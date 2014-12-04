@@ -12,7 +12,7 @@ First, load the PySAM and HTSeq software packages::
 And next, run HTSeq::
 
    htseq-count --format=bam --stranded=no --order=pos \
-       tophat_out/accepted_hits.bam \
+       tophat_salivary_repl1/accepted_hits.bam \
        ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf > salivary_repl1_counts.txt
 
 When this is done, type::
