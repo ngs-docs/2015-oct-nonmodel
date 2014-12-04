@@ -58,8 +58,8 @@ we can see (at the top) that the total number of reads in the R1 file
 is 95,236 (which is the same number of reads as in the R2 file, because
 we only looked at the paired reads that came out of Trimmomatic).
 
-In total, that's 190,472 reads in your trimmed (QC) data - or about 94%.
-That's pretty good!
+In total, that's 190,472 reads in your trimmed (QC) data, and 179,312
+mapped -- about 94%.  That's pretty good!
 
 ----
 
