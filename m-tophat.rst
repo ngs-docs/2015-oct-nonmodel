@@ -18,7 +18,8 @@ Load the TopHat software::
 
 And now run TopHat::
 
-      tophat -p 4 \
+   cd ~/rnaseq
+   tophat -p 4 \
        -G ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf \
        --transcriptome-index=~/RNAseq-model/transcriptome \
        -o tophat_salivary_repl1 \
