@@ -60,3 +60,5 @@ This will run all of the commands in the file 'lung-tophat.sh'.
 You can use the 'nano' editor to modify this fie -- type::
 
    nano lung-tophat.sh
+
+Next: :doc:`some-plotting`
