@@ -5,6 +5,7 @@ Let's script this!
 
 Type::
 
+   cd ~/rnaseq/
    cat > lung-tophat.sh <<EOF
 
 and then paste this in::
@@ -16,8 +17,8 @@ and then paste this in::
 
    cd ~/rnaseq
 
-   gunzip -c /mnt/scratch/ctb/rna/ERR315326_1.fastq.gz | head -400000 | gzip > lung_repl1_R1.fq.gz
-   gunzip -c /mnt/scratch/ctb/rna/ERR315326_2.fastq.gz | head -400000 | gzip > lung_repl1_R2.fq.gz
+   head -400000 ~/RNAseq-model/data/ERR315326_1.fastq.gz | gzip > lung_repl1_R1.fq.gz
+   head -400000 ~/RNAseq-model/data/ERR315326_2.fastq.gz | gzip > lung_repl1_R2.fq.gz
 
    java -jar $TRIM/trimmomatic PE lung_repl1_R1.fq.gz lung_repl1_R2.fq.gz \
      lung_repl1_R1.qc.fq.gz s1_se lung_repl1_R2.qc.fq.gz s2_se \
@@ -27,14 +28,14 @@ and then paste this in::
      MINLEN:25
 
    tophat -p 4 \
-       -G /mnt/scratch/ctb/rna/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf \
-       --transcriptome-index=/mnt/scratch/ctb/rna/transcriptome \
+       -G ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf \
+       --transcriptome-index=~/RNAseq-model/transcriptome \
        -o tophat_lung_repl1 \
-       /mnt/scratch/ctb/rna/Homo_sapiens/Ensembl/GRCh37/Sequence/Bowtie2Index/genome \
+       ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Sequence/Bowtie2Index/genome \
        lung_repl1_R1.qc.fq.gz lung_repl1_R2.qc.fq.gz 
 
    htseq-count --format=bam --stranded=no --order=pos tophat_lung_repl1/accepted_hits.bam \
-       /mnt/scratch/ctb/rna/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf > lung_repl1_counts.txt
+       ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf > lung_repl1_counts.txt
    EOF
 
 (Be sure to press the Enter or Return key after pasting this in!)

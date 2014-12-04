@@ -13,7 +13,7 @@ And next, run HTSeq::
 
    htseq-count --format=bam --stranded=no --order=pos \
        tophat_out/accepted_hits.bam \
-       /mnt/scratch/ctb/rna/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf > salivary_repl1_counts.txt
+       ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf > salivary_repl1_counts.txt
 
 When this is done, type::
 

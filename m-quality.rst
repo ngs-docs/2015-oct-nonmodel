@@ -1,7 +1,13 @@
 Short read quality and trimming
 ===============================
 
-Log into the HPC.  (More soon.)
+Log into the HPC with SSH; use your MSU NetID and log into the machine
+'gateway.hpcc.msu.edu'.  There copy/paste::
+
+   module load powertools
+   getexample RNAseq-model
+
+and you should see something about linking.
 
 0. Getting the data
 -------------------
@@ -24,13 +30,27 @@ sample has two replicates, and each replicate has two files.
 you would want the "Fastq files (ftp)", both File 1 and File 2.  (They
 take a few hours to download!)
 
-I've put them @@. Do ::
+We've already loaded the data onto the MSU HPC, and you've loaded
+it with 'module load powertools'.
 
-   ls -l @@
+To log into a compute node, type::
+
+   ~/RNAseq-model/login.sh
+
+If this doesn't work, do::
+
+   ssh dev-intel14-phi
+
+Now do::
+
+   ls -la ~/RNAseq-model/data/
 
 You'll see something like ::
 
-   -r--r--r-- 1 ctb ged-lab 879551444 Dec  3 12:22 ERR315325_1.fastq.gz
+   -r--r--r-- 1 mscholz common-data 3714262571 Dec  4 08:44 ERR315325_1.fastq
+   -r--r--r-- 1 mscholz common-data 3714262571 Dec  4 08:44 ERR315325_2.fastq
+   -r--r--r-- 1 mscholz common-data 2365633645 Dec  4 08:44 ERR315326_1.fastq
+   -r--r--r-- 1 mscholz common-data 2365633645 Dec  4 08:44 ERR315326_2.fastq
 
 which tells you that this file is 900,000,000 bytes or about 900 MB.
 Quite large!
@@ -45,8 +65,8 @@ First, make a directory::
 
 Copy in a subset of the data (100,000 reads)::
 
-   gunzip -c /mnt/scratch/ctb/rna/ERR315325_1.fastq.gz | head -400000 | gzip > salivary_repl1_R1.fq.gz
-   gunzip -c /mnt/scratch/ctb/rna/ERR315325_2.fastq.gz | head -400000 | gzip > salivary_repl1_R2.fq.gz
+   head -400000 ~/RNAseq-model/data/ERR315325_1.fastq | gzip > salivary_repl1_R1.fq.gz
+   head -400000 ~/RNAseq-model/data/ERR315325_2.fastq | gzip > salivary_repl1_R2.fq.gz
 
 These are FASTQ files -- let's take a look::
 
