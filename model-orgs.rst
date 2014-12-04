@@ -8,3 +8,4 @@
    m-tophat.rst
    m-htseq.rst
    m-more-tophat.rst
+   some-plotting.rst
