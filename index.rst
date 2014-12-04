@@ -9,10 +9,7 @@
 .. toctree::
    :maxdepth: 2
 
-   m-htseq.rst
-   m-more-tophat.rst
-   m-quality.rst
-   m-tophat.rst
+   model-orgs
 
 Indices and tables
 ==================
@@ -20,4 +17,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

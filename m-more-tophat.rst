@@ -1,4 +1,7 @@
-Let's script this.
+Processing another sample with TopHat and HTSeq
+===============================================
+
+Let's script this!
 
 Type::
 
@@ -10,6 +13,8 @@ and then paste this in::
    module load TopHat2/2.0.8b
    module load PySAM/0.6
    module load HTSeq/0.6.1
+
+   cd ~/rnaseq
 
    gunzip -c /mnt/scratch/ctb/rna/ERR315326_1.fastq.gz | head -400000 | gzip > lung_repl1_R1.fq.gz
    gunzip -c /mnt/scratch/ctb/rna/ERR315326_2.fastq.gz | head -400000 | gzip > lung_repl1_R2.fq.gz
@@ -37,3 +42,9 @@ and then paste this in::
 And now type::
 
    bash lung-tophat.sh
+
+This will run all of the commands in the file 'lung-tophat.sh'.
+
+You can use the 'nano' editor to modify this fie -- type::
+
+   nano lung-tophat.sh
