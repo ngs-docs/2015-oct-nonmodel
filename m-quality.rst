@@ -99,12 +99,75 @@ Mac or Linux machine, you can type::
 and then open the html files in your browser.  For Windows, we'll
 figure it out ;).
 
+You can also view my versions: `salivary_repl1_R1_fastqc.html
+<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/salivary_repl1_R1_fastqc.html>`__
+and `salivary_repl1_R2_fastqc.html
+<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/salivary_repl1_R2_fastqc.html>`__
+
+Questions:
+
+* What should you pay attention to in the FastQC report?
+* Which is "better", R1 or R2?
+
 Links:
 
 * `FastQC <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__
+* `FastQC tutorial video <http://www.youtube.com/watch?v=bz93ReOv87Y>`__
 
 3. Trimmomatic
 --------------
 
-4. FastQC
----------
+Now we're going to do some trimming!  We'll be using
+`Trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__.
+
+First, load the Trimmomatic software::
+
+   module load Trimmomatic/0.32
+
+Next, run Trimmomatic::
+
+   java -jar $TRIM/trimmomatic PE salivary_repl1_R1.fq.gz salivary_repl1_R2.fq.gz\
+        salivary_repl1_R1.qc.fq.gz s1_se salivary_repl1_R2.qc.fq.gz s2_se \
+        ILLUMINACLIP:$TRIM/adapters/TruSeq2-PE.fa:2:40:15 \
+        LEADING:2 TRAILING:2 \                            
+        SLIDINGWINDOW:4:2 \
+        MINLEN:25
+
+You should see output that looks like this:
+
+   ...
+   Input Read Pairs: 100000 Both Surviving: 95236 (95.24%) Forward Only Surviving: 4764 (4.76%) Reverse Only Surviving: 0 (0.00%) Dropped: 0 (0.00%)
+   TrimmomaticPE: Completed successfully
+
+Questions:
+
+* How do you figure out what the parameters mean?
+* How do you figure out what parameters to use?
+* What adapters do you use?
+* What version of Trimmomatic are we using here? (And FastQC?)
+* Are parameters different for RNAseq and genomic?
+* What's with these annoyingly long and complicated filenames?
+* What do we do with the single-ended files (s1_se and s2_se?)
+
+Links:
+
+* `Trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__
+
+4. FastQC again
+---------------
+
+Run FastQC again::
+
+   fastqc salivary_repl1_R1.qc.fq.gz
+   fastqc salivary_repl1_R2.qc.fq.gz
+
+(Note that you don't need to load the module again.)
+
+Copy them to your laptop and open them, OR you can view mine: `salivary_repl1_R1.qc_fastqc.html
+<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/salivary_repl1_R1.qc_fastqc.html>`__
+and `salivary_repl1_R2.qc_fastqc.html
+<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/salivary_repl1_R2.qc_fastqc.html>`__
+
+Questions:
+
+* is the quality trimmed stuff "better" than before?
