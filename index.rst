@@ -3,14 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the labibi demo site!
-================================
+2014 / December / mRNAseq workshops at Michigan State University
+================================================================
 
 .. toctree::
    :maxdepth: 2
 
-Labibi is a base package to use for documentation and Web sites for
-other projects of mine.
+   m-htseq.rst
+   m-more-tophat.rst
+   m-quality.rst
+   m-tophat.rst
 
 Indices and tables
 ==================

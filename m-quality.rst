@@ -43,7 +43,7 @@ First, make a directory::
    mkdir ~/rnaseq
    cd ~/rnaseq
 
-Copy in a subset of the data (100,000 sequences)::
+Copy in a subset of the data (100,000 reads)::
 
    gunzip -c /mnt/scratch/ctb/rna/ERR315325_1.fastq.gz | head -400000 | gzip > salivary_repl1_R1.fq.gz
    gunzip -c /mnt/scratch/ctb/rna/ERR315325_2.fastq.gz | head -400000 | gzip > salivary_repl1_R2.fq.gz
@@ -56,9 +56,9 @@ These are FASTQ files -- let's take a look::
 
 Question:
 
-* what's the ERR* name?
-* what's the salivary* name?
-* why is there R1 and R2?
+* why are some files named ERR*?
+* why are some files named salivary*?
+* why is there R1 and R2 in the name?
 
 Links:
 
@@ -84,7 +84,7 @@ Now type 'ls'::
 
    ls
 
-and you will see 
+and you will see ::
 
    salivary_repl1_R1_fastqc.html
    salivary_repl1_R1_fastqc.zip
@@ -133,7 +133,7 @@ Next, run Trimmomatic::
         SLIDINGWINDOW:4:2 \
         MINLEN:25
 
-You should see output that looks like this:
+You should see output that looks like this::
 
    ...
    Input Read Pairs: 100000 Both Surviving: 95236 (95.24%) Forward Only Surviving: 4764 (4.76%) Reverse Only Surviving: 0 (0.00%) Dropped: 0 (0.00%)
@@ -168,6 +168,16 @@ Copy them to your laptop and open them, OR you can view mine: `salivary_repl1_R1
 and `salivary_repl1_R2.qc_fastqc.html
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/salivary_repl1_R2.qc_fastqc.html>`__
 
+Let's take a look at the output files::
+
+   less salivary_repl1_R1.qc.fq.gz
+
+(again, use 'q' to exit less).
+
 Questions:
 
-* is the quality trimmed stuff "better" than before?
+* Why are some of the reads shorter than others?
+* is the quality trimmed data "better" than before?
+* Does it matter that you still have adapters!?
+
+Next: :doc:`m-tophat`
