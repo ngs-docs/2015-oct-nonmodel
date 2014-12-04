@@ -6,6 +6,7 @@ Let's script this!
 Type::
 
    cd ~/rnaseq/
+   module load Trimmomatic/0.32
    cat > lung-tophat.sh <<EOF
 
 and then paste this in::
@@ -29,7 +30,7 @@ and then paste this in::
 
    tophat -p 4 \
        -G ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf \
-       --transcriptome-index=~/RNAseq-model/transcriptome/ \
+       --transcriptome-index=~/RNAseq-model/transcriptome \
        -o tophat_lung_repl1 \
        ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Sequence/Bowtie2Index/genome \
        lung_repl1_R1.qc.fq.gz lung_repl1_R2.qc.fq.gz 
