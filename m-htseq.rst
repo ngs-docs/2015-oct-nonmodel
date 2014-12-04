@@ -19,6 +19,8 @@ When this is done, type::
 
    less salivary_repl1_counts.txt
 
+(again, use 'q' to exit).  These are your gene counts.
+
 Questions:
 
 * what are the 'ENS*...' names?
