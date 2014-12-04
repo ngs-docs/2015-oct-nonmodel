@@ -20,9 +20,9 @@ and then paste this in::
    head -400000 ~/RNAseq-model/data/ERR315326_1.fastq | gzip > lung_repl1_R1.fq.gz
    head -400000 ~/RNAseq-model/data/ERR315326_2.fastq | gzip > lung_repl1_R2.fq.gz
 
-   java -jar $TRIM/trimmomatic PE lung_repl1_R1.fq.gz lung_repl1_R2.fq.gz \
+   java -jar \$TRIM/trimmomatic PE lung_repl1_R1.fq.gz lung_repl1_R2.fq.gz \
      lung_repl1_R1.qc.fq.gz s1_se lung_repl1_R2.qc.fq.gz s2_se \
-     ILLUMINACLIP:$TRIM/adapters/TruSeq2-PE.fa:2:40:15 \
+     ILLUMINACLIP:\$TRIM/adapters/TruSeq2-PE.fa:2:40:15 \
      LEADING:2 TRAILING:2 \                            
      SLIDINGWINDOW:4:2 \
      MINLEN:25
