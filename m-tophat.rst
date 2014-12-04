@@ -12,9 +12,12 @@ case we've loaded in the `Illumina iGenomes project
 <http://cufflinks.cbcb.umd.edu/igenomes.html>`__ into the RNAseq-model
 data set.
 
+Mapping reads
+-------------
+
 Load the TopHat software::
 
-   module load TopHat2/2.0.8b
+   module load TopHat2/2.0.12
 
 And now run TopHat::
 
@@ -39,5 +42,25 @@ Links:
 
 * `TopHat manual <http://ccb.jhu.edu/software/tophat/manual.shtml>`__
 * `Illumina iGenomes project <http://cufflinks.cbcb.umd.edu/igenomes.html>`__
+
+Counting mapped reads percentage
+--------------------------------
+
+Let's ask samtools for the total number of reads that mapped::
+
+    samtools view -c -F 4 tophat_salivary_repl1/accepted_hits.bam
+
+You should get around 179,312.  
+
+If we look at the `FastQC report
+<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/salivary_repl1_R1.qc_fastqc.html>`__,
+we can see (at the top) that the total number of reads in the R1 file
+is 95,236 (which is the same number of reads as in the R2 file, because
+we only looked at the paired reads that came out of Trimmomatic).
+
+In total, that's 190,472 reads in your trimmed (QC) data - or about 94%.
+That's pretty good!
+
+----
 
 Next: :doc:`m-htseq`
