@@ -11,9 +11,10 @@ Tutorials:
 .. toctree::
    :maxdepth: 2
 
-   m-quality.rst
-   m-tophat.rst
-   m-htseq.rst
-   m-more-tophat.rst
-   m-data-analysis.rst
-   m-hpc-qsub.rst
+   m-quality
+   m-tophat
+   m-htseq
+   m-more-tophat
+   m-data-analysis
+   m-hpc-qsub
+   more-resources
