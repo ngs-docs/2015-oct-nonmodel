@@ -61,4 +61,4 @@ You can use the 'nano' editor to modify this fie -- type::
 
    nano lung-tophat.sh
 
-Next: :doc:`some-plotting`
+Next: :doc:`m-some-plotting`
