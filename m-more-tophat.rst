@@ -39,6 +39,7 @@ and then paste this in::
    # The outputs are going to be under the 'tophat_lung_repl1' directory.
    tophat -p 4 \
        -G ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf \
+       --transcriptome-index=$HOME/RNAseq-model/transcriptome \
        -o tophat_lung_repl1 \
        ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Sequence/Bowtie2Index/genome \
        lung_repl1_R1.qc.fq.gz lung_repl1_R2.qc.fq.gz 
@@ -49,9 +50,11 @@ and then paste this in::
        ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf > lung_repl1_counts.txt
    EOF
 
-(Be sure to press the Enter or Return key after pasting this in!)
+(Be sure to press the Enter or Return key after pasting this in!)  This is
+`called a 'heredoc' <http://en.wikipedia.org/wiki/Here_document#Unix-Shells>`__
+and it gives a way to write a shell script via copy-paste ;).
 
-And now type::
+Next, type::
 
    bash lung-tophat.sh
 

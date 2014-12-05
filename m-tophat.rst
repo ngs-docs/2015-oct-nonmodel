@@ -24,7 +24,7 @@ And now run TopHat::
    cd ~/rnaseq
    tophat -p 4 \
        -G ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Annotation/Genes/genes.gtf \
-       --transcriptome-index=~/RNAseq-model/transcriptome \
+       --transcriptome-index=$HOME/RNAseq-model/transcriptome \
        -o tophat_salivary_repl1 \
        ~/RNAseq-model/Homo_sapiens/Ensembl/GRCh37/Sequence/Bowtie2Index/genome \
        salivary_repl1_R1.qc.fq.gz salivary_repl1_R2.qc.fq.gz 
