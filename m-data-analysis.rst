@@ -13,6 +13,7 @@ with differential expression information in it.
 
 Links:
 
+* `False Discovery Rate <http://en.wikipedia.org/wiki/False_discovery_rate>`__
 * `Learn R with Swirl <http://swirlstats.com/>`__
 * `Data Carpentry <http://www.datacarpentry.org/>`__
 
@@ -38,3 +39,4 @@ Next, to run the R script, do::
 
 This will produce two files, `edgeR-MA-plot.pdf <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-MA-plot.pdf>`__ and `edgeR-lung-vs-salivary.csv <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-lung-vs-salivary.csv>`__.
 
+Next: :doc:`m-hpc-qsub`

@@ -1,9 +1,7 @@
 #! /bin/bash
 #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
-#PBS -M titus@idyll.org
-#PBS -A ged-intel11
 
-cd $HOME/rnaseq/process
+cd $HOME/rnaseq/script
 . env.sh
 
 java -jar $TRIM/trimmomatic PE ERR315382_1.fastq ERR315382_2.fastq \
