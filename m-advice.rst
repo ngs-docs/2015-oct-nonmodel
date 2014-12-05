@@ -40,8 +40,9 @@ In this case, you will see a 'testdata' directory.  If you click on that,
 you'll see a bunch of fastq.gz files.  These are the files that you
 want to get onto the HPC.
 
-To do that, log into the HPC, go to the directory on the HPC you want
-to put the files in, and run a 'wget' -- for example, on the HPC::
+To download these files onto the HPC, log into the HPC, go to the
+directory on the HPC you want to put the files in, and run a 'wget' --
+for example, on the HPC::
 
    mkdir ~/testdata
    cd ~/testdata
@@ -58,8 +59,12 @@ Tada!
 Developing your own pipeline
 ----------------------------
 
+Even if all you plan to do is change the filenames you're operating on,
+you'll need to develop your own analysis pipeline.  Here are some tips.
+
 1. Start with someone else's approach; don't design your own.  There
-   are lots of partly done examples that you can find on the Web.
+   are lots of partly done examples that you can find on the Web,
+   including in this tutorial.
 
 2. Generate a data subset (the first few 100k reads, for example).
 
@@ -84,3 +89,5 @@ Developing your own pipeline
 
 8. Provide your scripts and raw counts files as part of any publication
    or thesis, perhaps via `figshare <http://figshare.com>`__.
+
+Next: :doc:`more-resources`
