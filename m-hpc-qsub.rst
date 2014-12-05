@@ -23,7 +23,7 @@ to run some analyses on the HPC.  To run, do something like this::
    mkdir ~/rnaseq
    mkdir ~/rnaseq/script
    cd ~/rnaseq/script
-   ln -fs ~/RNAseq-model/*.fastq .
+   ln -fs ~/RNAseq-model/data/*.fastq .
 
    curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/env.sh
    curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/process-1.sh
