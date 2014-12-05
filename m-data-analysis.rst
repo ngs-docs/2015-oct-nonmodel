@@ -46,7 +46,7 @@ This will produce two files, `edgeR-MA-plot.pdf
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-MA-plot.pdf>`__
 and `edgeR-lung-vs-salivary.csv
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-lung-vs-salivary.csv>`__;
-they will be in your ``rnaseq/script`` folder in your home directory
+they will be in your ``rnaseq`` folder in your home directory
 on the HPC.  The CSV file can be opened directly in Excel; you can
 also look at it `here
 <https://raw.githubusercontent.com/ngs-docs/2014-msu-rnaseq/master/files/subset/edgeR-lung-vs-salivary.csv>`__.
@@ -91,7 +91,19 @@ This is now a file you can upload to PANTHER.
 
 (You can download my copy of this `here <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-panther-upload.csv>`__
 
-To do, go to http://www.pantherdb.org/.
+To do, go to http://www.pantherdb.org/. In box 1, select "Choose file"
+and find the CSV file you want to upload to PANTHER.  Nothing else in box
+one should be changed.
+
+In box 2, select "Homo sapiens."
+
+In box 3, select either "Functional analysis classification viewed in
+gene list" or "Functional analysis classification viewed in pie
+chart."
+
+Click submit.
+
+Now you can explore the results!
 
 Links:
 
