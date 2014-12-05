@@ -17,4 +17,5 @@ Tutorials:
    m-more-tophat
    m-data-analysis
    m-hpc-qsub
+   m-advice
    more-resources

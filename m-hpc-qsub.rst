@@ -37,3 +37,5 @@ to run some analyses on the HPC.  To run, do something like this::
    qsub process-4.sh
 
 You can use 'qstat | grep <username>' to check on your jobs' status.
+
+Next: :doc:`m-advice`
