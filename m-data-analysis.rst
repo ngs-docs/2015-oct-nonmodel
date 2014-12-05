@@ -23,10 +23,10 @@ Running edgeR on a data subset
 To download the script and data files for the 100k read subsets, do::
 
    curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/lung_saliva.R
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/files/subset/lung_repl1_counts.txt
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/files/subset/lung_repl2_counts.txt
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/files/subset/salivary_repl1_counts.txt
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/files/subset/salivary_repl2_counts.txt
+   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/lung_repl1_counts.txt
+   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/lung_repl2_counts.txt
+   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/salivary_repl1_counts.txt
+   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/salivary_repl2_counts.txt
 
 Note: the ``saliva_repl1_counts.txt`` and ``lung_repl1_counts.txt``
 are the files produced by :doc:`m-tophat` and :doc:`m-more-tophat`,
@@ -37,6 +37,11 @@ Next, to run the R script, do::
    module load R
    Rscript lung_saliva.R
 
-This will produce two files, `edgeR-MA-plot.pdf <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-MA-plot.pdf>`__ and `edgeR-lung-vs-salivary.csv <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-lung-vs-salivary.csv>`__.
+This will produce two files, `edgeR-MA-plot.pdf <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-MA-plot.pdf>`__ and `edgeR-lung-vs-salivary.csv <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-lung-vs-salivary.csv>`__; they will be in your ``rnaseq/script`` folder in
+your home directory on the HPC.  The CSV file can be opened directly in Excel.
+
+Links:
+
+* `edgeR tutorial from UT Austin <https://wikis.utexas.edu/display/bioiteam/Differential+gene+expression+analysis#Differentialgeneexpressionanalysis-Optional:edgeR>`__
 
 Next: :doc:`m-hpc-qsub`
