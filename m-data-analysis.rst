@@ -20,7 +20,7 @@ Links:
 * `Data Carpentry <http://www.datacarpentry.org/>`__
 
 Running edgeR on a data subset
-==============================
+------------------------------
 
 To run the script on the HPC, download the script and data files for
 the 100k read subsets.  At the command line, do::
@@ -58,7 +58,7 @@ Links:
 * `edgeR tutorial from UT Austin <https://wikis.utexas.edu/display/bioiteam/Differential+gene+expression+analysis#Differentialgeneexpressionanalysis-Optional:edgeR>`__
 
 Functional and network analysis on differentially expressed genes
-=================================================================
+-----------------------------------------------------------------
 
 There are a number of sites that let you analyze gene lists, including
 `DAVID <http://david.abcc.ncifcrf.gov/>`__.  I have gotten a number of
@@ -89,7 +89,9 @@ functional classification.  The steps are:
 
 This is now a file you can upload to PANTHER.
 
-To do, so 
+(You can download my copy of this `here <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-panther-upload.csv>`__
+
+To do, go to http://www.pantherdb.org/.
 
 Links:
 
