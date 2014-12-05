@@ -28,7 +28,7 @@ To download the script and data files for the 100k read subsets, do::
    curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/files/subset/salivary_repl2_counts.txt
 
 Note: the ``saliva_repl1_counts.txt`` and ``lung_repl1_counts.txt``
-are the files produced by :doc:`m-tophat` and doc:`m-more-tophat`,
+are the files produced by :doc:`m-tophat` and :doc:`m-more-tophat`,
 respectively.  I've also run them on the replicate data sets.
 
 Next, to run the R script, do::

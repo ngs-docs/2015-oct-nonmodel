@@ -16,3 +16,4 @@ Tutorials:
    m-htseq.rst
    m-more-tophat.rst
    m-data-analysis.rst
+   m-hpc-qsub.rst
