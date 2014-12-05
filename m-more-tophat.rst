@@ -60,8 +60,8 @@ Next, type::
 
 This will run all of the commands in the file 'lung-tophat.sh'.
 
-You can use the 'nano' editor to modify this fie -- type::
+You can use the 'nano' editor to modify this file -- type::
 
    nano lung-tophat.sh
 
-Next: :doc:`m-some-plotting`
+Next: :doc:`m-data-analysis`

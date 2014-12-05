@@ -6,6 +6,14 @@
 2014 / December / mRNAseq workshops at Michigan State University
 ================================================================
 
+This is the material for two workshops given at MSU by Titus Brown and
+Matt Scholz.  The first workshop (Dec 4/5) was on model organism mRNAseq,
+and the second workshop (Dec 10/11) will be on semi-model organism
+mRNAseq.
+
+Both workshops were sponsored by iCER, http://icer.msu.edu/, and made
+use of the MSU High Performance Compute Center, http://hpcc.msu.edu/.
+
 .. toctree::
    :maxdepth: 2
 
