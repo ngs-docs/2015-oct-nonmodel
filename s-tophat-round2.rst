@@ -30,13 +30,51 @@ Questions:
 
 * How do we pick the transcriptome/genome?
 
-Counting mapped reads percentage
---------------------------------
+Viewing the mapped reads percentage
+-----------------------------------
 
 Let's look at these numbers specifically::
 
    less tophat_female_repl1/align_summary.txt
 
-----
+Making gene counts
+------------------
 
-.. Next: :doc:`m-htseq`
+Now that we know which reads go with which gene, we'll use
+`htseq-count <http://www-huber.embl.de/users/anders/HTSeq/doc/count.html>`__.
+
+First, load the PySAM and HTSeq software packages::
+
+   module load HTSeq/0.6.1
+
+And next, run HTSeq::
+
+   htseq-count --format=bam --stranded=no --order=pos \
+       tophat_female_repl1/accepted_hits.bam \
+       cuffmerge_all/nostrand.gtf > female_repl1_counts.txt
+
+When this is done, type::
+
+   less female_repl1_counts.txt
+
+(again, use 'q' to exit).  These are your gene counts.
+
+Note, these are *raw* gene counts - the number of reads that map to
+each feature (gene, in this case).  They are not normalized by length
+of gene. According to `this post on seqanswers
+<http://seqanswers.com/forums/archive/index.php/t-9998.html>`__, both
+DEseq and edgeR want exactly this kind of information!
+
+Questions:
+
+* what are the 'TCONS...' names?
+* what do these parameters mean?
+* what parameters does HTSeq take?
+* why are we using so many programs?
+
+Links:
+
+* `HTSeq <http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html>`__
+* `htseq-count documentation <http://www-huber.embl.de/users/anders/HTSeq/doc/count.html>`__
+
+Next: :doc:`s-more-tophat`
