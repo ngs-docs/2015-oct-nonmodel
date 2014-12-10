@@ -224,4 +224,40 @@ Questions:
 * is the quality trimmed data "better" than before?
 * Does it matter that you still have adapters!?
 
-Next: :doc:`m-tophat`
+5. Subset and trim the rest of the sequences
+--------------------------------------------
+
+Copy and paste all of the below at once::
+
+   gunzip -c ~/RNAseq-semimodel/data/SRR534006_1.fastq | head -400000 | gzip > female_repl2_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR534006_2.fastq | head -400000 | gzip > female_repl2_R2.fq.gz 
+
+   gunzip -c ~/RNAseq-semimodel/data/SRR536786_1.fastq | head -400000 | gzip > male_repl1_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR536786_2.fastq | head -400000 | gzip > male_repl1_R2.fq.gz 
+
+   gunzip -c ~/RNAseq-semimodel/data/SRR536787_1.fastq | head -400000 | gzip > male_repl2_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR536787_2.fastq | head -400000 | gzip > male_repl2_R2.fq.gz 
+
+   java -jar $TRIM/trimmomatic PE female_repl2_R1.fq.gz female_repl2_R2.fq.gz\
+        female_repl2_R1.qc.fq.gz s1_se female_repl2_R2.qc.fq.gz s2_se \
+        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        LEADING:2 TRAILING:2 \                            
+        SLIDINGWINDOW:4:2 \
+        MINLEN:25
+
+   java -jar $TRIM/trimmomatic PE male_repl1_R1.fq.gz male_repl1_R2.fq.gz\
+        male_repl1_R1.qc.fq.gz s1_se male_repl1_R2.qc.fq.gz s2_se \
+        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        LEADING:2 TRAILING:2 \                            
+        SLIDINGWINDOW:4:2 \
+        MINLEN:25
+   
+   java -jar $TRIM/trimmomatic PE male_repl2_R1.fq.gz male_repl2_R2.fq.gz\
+        male_repl2_R1.qc.fq.gz s1_se male_repl2_R2.qc.fq.gz s2_se \
+        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        LEADING:2 TRAILING:2 \                            
+        SLIDINGWINDOW:4:2 \
+        MINLEN:25
+   
+
+Next: :doc:`s-building-a-reference`
