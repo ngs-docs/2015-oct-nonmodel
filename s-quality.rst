@@ -28,19 +28,7 @@ http://www.ebi.ac.uk/ena/data/view/SAMN01096083
 http://www.ebi.ac.uk/ena/data/view/SAMN01096084
 http://www.ebi.ac.uk/ena/data/view/SAMN01096085
 
-
-We'll be using a few RNAseq data sets from Fagerberg et al., `Analysis
-of the Human Tissue-specific Expression by Genome-wide Integration of
-Transcriptomics and Antibody-based Proteomics
-<http://www.mcponline.org/content/13/2/397.full>`__.
-
-You can get this data from the European Nucleotide Archive under
-ERP003613 -- go to http://www.ebi.ac.uk/ena/data/view/ERP003613
-to see all the samples.
-
-I picked two samples: `salivary gland
-<http://www.ebi.ac.uk/ena/data/view/SAMEA2151887>`__ and `lung
-<http://www.ebi.ac.uk/ena/data/view/SAMEA2155770>`__.  Note that each
+Note that each
 sample has two replicates, and each replicate has two files.
 
 **Don't download them**, but if you were downloading these yourself,
