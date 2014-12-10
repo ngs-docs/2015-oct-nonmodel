@@ -56,3 +56,8 @@ and then paste this in::
        cuffmerge_all/nostrand.gtf > male_repl2_counts.txt
        
    EOF
+
+To submit these to the queue, do::
+
+   qsub chick-tophat-3.sh
+   qsub chick-tophat-4.sh
