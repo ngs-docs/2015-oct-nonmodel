@@ -6,6 +6,8 @@ Brown and Matt Scholz.
 
 .. .. figure:: _static/model-rnaseq-pipeline.png
 
+What are semi-model organisms? `One with bad transcriptomes. <http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003998>`__!
+
 Tutorials:
 
 .. toctree::

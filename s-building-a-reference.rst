@@ -13,6 +13,10 @@ this case we've loaded in the `Illumina iGenomes project
 <http://cufflinks.cbcb.umd.edu/igenomes.html>`__ into the RNAseq-semimodel
 location.
 
+See paper:
+
+    http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3334321/
+
 Map all the reads to the genome with TopHat
 -------------------------------------------
 
