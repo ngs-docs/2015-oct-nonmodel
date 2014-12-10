@@ -44,3 +44,5 @@ This will run all of the commands in the file 'chick-tophat-2.sh'.
 You can use the 'nano' editor to modify this file -- type::
 
    nano chick-tophat-2.sh
+
+:doc:`s-even-more-tophat`

@@ -1,4 +1,5 @@
-
+Using the HPC to run jobs in parallel
+=====================================
 
 Type::
 
@@ -6,8 +7,9 @@ Type::
 
 and then paste this in::
 
+   #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
+   #PBS -A classbuyin
    module load TopHat2/2.0.12
-   module load PySAM/0.6
    module load HTSeq/0.6.1
 
    # go to the 'rnaseq' directory in my home directory
@@ -27,14 +29,15 @@ and then paste this in::
        
    EOF
 
-Type::
+Next, do it for male_repl2::
 
    cat > chick-tophat-4.sh <<EOF
 
 and then paste this in::
 
+   #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
+   #PBS -A classbuyin
    module load TopHat2/2.0.12
-   module load PySAM/0.6
    module load HTSeq/0.6.1
 
    # go to the 'rnaseq' directory in my home directory
