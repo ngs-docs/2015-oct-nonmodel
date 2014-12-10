@@ -73,8 +73,8 @@ First, make a directory::
 
 Copy in a subset of the data (100,000 reads)::
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534005_1.fastq | head -400000 | gzip > female_repl1_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534005_2.fastq | head -400000 | gzip > female_repl1_R2.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR534005_1.fastq.gz | head -400000 | gzip > female_repl1_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR534005_2.fastq.gz | head -400000 | gzip > female_repl1_R2.fq.gz 
 
 These are FASTQ files -- let's take a look::
 
@@ -217,14 +217,14 @@ Questions:
 
 Copy and paste all of the below at once::
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534006_1.fastq | head -400000 | gzip > female_repl2_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534006_2.fastq | head -400000 | gzip > female_repl2_R2.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR534006_1.fastq.gz | head -400000 | gzip > female_repl2_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR534006_2.fastq.gz | head -400000 | gzip > female_repl2_R2.fq.gz 
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536786_1.fastq | head -400000 | gzip > male_repl1_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536786_2.fastq | head -400000 | gzip > male_repl1_R2.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR536786_1.fastq.gz | head -400000 | gzip > male_repl1_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR536786_2.fastq.gz | head -400000 | gzip > male_repl1_R2.fq.gz 
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536787_1.fastq | head -400000 | gzip > male_repl2_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536787_2.fastq | head -400000 | gzip > male_repl2_R2.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR536787_1.fastq.gz | head -400000 | gzip > male_repl2_R1.fq.gz 
+   gunzip -c ~/RNAseq-semimodel/data/SRR536787_2.fastq.gz | head -400000 | gzip > male_repl2_R2.fq.gz 
 
    java -jar $TRIM/trimmomatic PE female_repl2_R1.fq.gz female_repl2_R2.fq.gz\
         female_repl2_R1.qc.fq.gz s1_se female_repl2_R2.qc.fq.gz s2_se \
