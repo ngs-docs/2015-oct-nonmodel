@@ -27,6 +27,8 @@ We'll be using the `TopHat software
 
 Do::
 
+   module load TopHat2/2.0.12
+
    tophat -p 4 \
        -G  $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Annotation/Genes/genes.gtf \
        --transcriptome-index=$HOME/RNAseq-semimodel/tophat/transcriptome \
