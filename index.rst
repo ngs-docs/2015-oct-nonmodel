@@ -17,6 +17,7 @@ use of the MSU High Performance Compute Center, http://hpcc.msu.edu/.
 .. toctree::
    :maxdepth: 2
 
+   semi-orgs
    model-orgs
 
 Indices and tables
