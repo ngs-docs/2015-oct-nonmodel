@@ -12,9 +12,10 @@ Tutorials:
    :maxdepth: 2
 
    s-quality
-   s-tophat
-   s-htseq
+   s-building-a-reference.rst
+   s-tophat-round2.rst
    s-more-tophat
+   s-htseq
    s-data-analysis
    s-hpc-qsub
    s-advice
