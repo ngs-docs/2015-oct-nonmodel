@@ -27,7 +27,7 @@ Questions:
 * What are all these parameters?!
 * How do we pick the transcriptome/genome?
 * Why is it so slow?
-* What is different about mapping RNAseq reads vs mapping genomic reads.
+* What is different about mapping RNAseq reads vs mapping genomic reads?
 
 Links:
 
@@ -41,8 +41,8 @@ Evaluating the mapping
 
    less tophat_all/align_summary.txt
 
-Build a new transcriptome ("ab initio") from the combined reads
----------------------------------------------------------------
+Build a new transcriptome ("ab initio") from the combined reads using Cufflinks
+-------------------------------------------------------------------------------
 
 Do::
 
@@ -63,25 +63,41 @@ Do::
 
    ls -1 cuff_all/transcripts.gtf > cuff_list.txt
 
-   cuffmerge -g $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Annotation/Genes/genes.gtf -o cuffmerge_all \
-       -s $HOME/RNAseq-semimodel/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
+   cuffmerge -g $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Annotation/Genes/genes.gtf \
+       -o cuffmerge_all \
+       -s $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
        cuff_list.txt
+
+Do some cleanup::
+
+   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/remove-nostrand.py
+   python remove-nostrand.py cuffmerge_all/merged.gtf > cuffmerge_all/nostrand.gtf
 
 Questions:
 
 * why do you want to merge?
 * why would you have a list of more than one thing in list.txt?
 * come to think of it, why aren't you (re)mapping all your reads every time?
+* what's with the 'remove nostrand' script?
+
+Extracting your new transcriptome
+---------------------------------
+
+Do::
+
+   gffread -w cuffmerge_all.fa \
+           -g $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
+           cuffmerge_all/merged.gtf
+
+Questions:
+
+* What's the difference between a GTF file and the FA file we're producing above?
 
 Checking out your new transcriptome
 -----------------------------------
 
 Do::
 
-   gffread -w cuffmerge_all.fa \
-           -g $HOME/RNAseq-semimodel/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
-           cuffmerge_all/merged.gtf
+   head -30 cuffmerge_all.fa
 
-Questions:
-
-* What's the difference between a GTF file and the .fa we're producing above?
+Head on over to `the chicken genome browser <http://genome.ucsc.edu/cgi-bin/hgTracks?db=galGal4>`__ and try BLATign the sequence!
