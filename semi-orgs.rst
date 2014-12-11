@@ -19,5 +19,5 @@ Tutorials:
    s-more-tophat
    s-even-more-tophat
    s-data-analysis
-   s-advice
+   m-advice
    more-resources
