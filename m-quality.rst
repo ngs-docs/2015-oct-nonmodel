@@ -139,6 +139,8 @@ Links:
 
 Now we're going to do some trimming!  We'll be using
 `Trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__.
+For
+a discussion of optimal RNAseq trimming strategies, see `MacManes, 2014 <http://journal.frontiersin.org/Journal/10.3389/fgene.2014.00013/abstract>`__.
 
 First, load the Trimmomatic software::
 
