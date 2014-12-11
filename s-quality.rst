@@ -103,7 +103,7 @@ First, we need to load the FastQC software into our account::
 
 (You have to do this each time you log in and want to use FastQC.)
 
-Now, run FastQC on both of the salivary gland files::
+Now, run FastQC on both of the female files::
 
    fastqc female_repl1_R1.fq.gz
    fastqc female_repl1_R2.fq.gz

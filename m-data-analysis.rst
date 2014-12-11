@@ -85,9 +85,9 @@ functional classification.  The steps are:
 
 This is now a file you can upload to PANTHER.
 
-(You can download my copy of this `here <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-panther-upload.txt>`__
+(`You can download my copy of this here <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-panther-upload.txt>`__)
 
-To do, go to http://www.pantherdb.org/. In box 1, select "Choose file"
+To do the analysis, go to http://www.pantherdb.org/. In box 1, select "Choose file"
 and find the CSV file you want to upload to PANTHER.  Nothing else in box
 one should be changed.
 
