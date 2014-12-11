@@ -9,8 +9,9 @@ To run edgeR, you need to write a data loading and manipulation script
 in R.  In this case, I've provided one -- `chick.R
 <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick.R>`__.
 This script will load in two samples with two replicates, execute an
-MA plot, and provide a spreadsheet with differential expression
-information in it.  To download it, `click here
+MA plot, do an MDS analysis/plot, and provide a spreadsheet with
+differential expression information in it.  To download it, `click
+here
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick.R>`__.
 
 Links:
@@ -39,8 +40,10 @@ Next, to run the R script, do::
    module load R
    Rscript chick.R
 
-This will produce two files, `chick-edgeR-MA-plot.pdf
+This will produce three files, `chick-edgeR-MA-plot.pdf
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MA-plot.pdf>`__
+`chick-edgeR-MDS.pdf
+<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MDS.pdf>`__
 and `chick-edgeR.csv
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/chick-edgeR.csv>`__;
 they will be in your ``rnaseq`` folder in your home directory

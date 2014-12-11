@@ -28,5 +28,10 @@ plot(
   col = ifelse( etp$table$FDR < .2, "red", "black" ) )
 dev.off()
 
+# more plot!
+pdf("chick-edgeR-MDS.pdf")
+plotMDS(dge)
+dev.off()
+
 # output CSV
 write.csv(etp$table, "chick-edgeR.csv")
