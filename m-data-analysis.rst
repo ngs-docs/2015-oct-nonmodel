@@ -72,10 +72,6 @@ More specifically, you can explore your RNAseq data with
 * tests for statistical overrepresentation;
 * tests for statistical enrichment based on associated fold change.
 
-I have been unable to get meaningful results for statistical overrepresentation
-on our test data set, and I cannot get the statistical enrichment to work
-on our salivary gland data; I'll update the instructions when I do.
-
 You need to crop and transform the data a little bit before using the
 functional classification.  The steps are:
 
@@ -85,11 +81,11 @@ functional classification.  The steps are:
 
 3. Choose an FDR cutoff (suggest FDR < 0.05 or lower) and delete all the rows after that (or, copy the rows into a new spreadsheet -- might be quicker).
 
-4. Save as a "Windows Comma Separated" file.
+4. Save as a "Tab-delimited text."  (Note, on Mac OS X, you may need to save this as "Windows formatted text" instead.)
 
 This is now a file you can upload to PANTHER.
 
-(You can download my copy of this `here <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-panther-upload.csv>`__
+(You can download my copy of this `here <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/subset/edgeR-panther-upload.txt>`__
 
 To do, go to http://www.pantherdb.org/. In box 1, select "Choose file"
 and find the CSV file you want to upload to PANTHER.  Nothing else in box
