@@ -61,3 +61,5 @@ To submit these to the queue, do::
 
    qsub chick-tophat-3.sh
    qsub chick-tophat-4.sh
+
+Next: doc:`s-data-analysis`

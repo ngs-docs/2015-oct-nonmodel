@@ -18,8 +18,6 @@ Tutorials:
    s-tophat-round2.rst
    s-more-tophat
    s-even-more-tophat
-   s-htseq
    s-data-analysis
-   s-hpc-qsub
    s-advice
    more-resources
