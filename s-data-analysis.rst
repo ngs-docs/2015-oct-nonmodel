@@ -6,7 +6,7 @@ Data analysis & differential expression
       mkdir ~/rnaseq
       cd ~/rnaseq
 
-   and then run the 'wget' commands below.
+   and then run the 'curl' commands below.
 
 At this point, you should have four files::
 
@@ -165,14 +165,61 @@ To download and run it, do::
    curl -O https://raw.githubusercontent.com/ngs-docs/2014-msu-rnaseq/master/files/add-gene-name-to-diffexpr-csv.py
    python add-gene-name-to-diffexpr-csv.py cuffmerge_all/nostrand.gtf chick-edgeR.csv > chick-edgeR-named.csv
 
-You can `download my copy of this file <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__ and open it in Excel, or you can just `look at it online <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick-subset/chick-edgeR-named.csv>`__
+You can `download my copy of this file <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__ and open it in Excel, or you can just `look at it online <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick-subset/chick-edgeR-named.csv>`__.  And hey, look, gene names!
 
-A quick note -- it's important to realize that we didn't do any clever
-analysis to get the gene name and nearest reference gene information
-into this file.  It was simply transferred from the official gene
-annotation for chick when we ran cuffmerge.  We'll talk a little bit about
-how to generate your own annotations later.
+You can look up the NM_ stuff in genbank (actually, googling "genbank
+NM_204286" will bring you right to a birdbase link), and the gene
+names can be fed direclty into services like `DAVID
+<http://david.abcc.ncifcrf.gov/tools.jsp>`__.
+
+One quick note before we move on -- it's important to realize that we
+didn't do any clever analysis to get the gene name and nearest
+reference gene information into this file.  It was simply transferred
+from the official gene annotation for chick when we ran cuffmerge.
+We'll talk a little bit about how to generate your own annotations
+later.
 
 .. @CTB
 
-Next: :doc:`m-advice`
+Working with DAVID
+------------------
+
+When you're interested in looking at enrichment of functional gene
+categories, the `DAVID tool for gene enrichment analysis
+<http://david.abcc.ncifcrf.gov/tools.jsp>`__ is a common
+recommendation.  The essential idea is to look at some selection of
+genes (ones that are differentially expressed, usually!) in the
+background context of a much larger set of genes (all expressed genes
+that are not differentially expressed).
+
+The simplest way to do this is to pick an FDR, and select all gene accessions
+above that FDR.  For example:
+
+* go to `DAVID <http://david.abcc.ncifcrf.gov/tools.jsp>`__;
+* Select 'upload', and paste in the first 1,000 accessions from `chick-edgeR-named <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__;
+* Under "Select identifier", choose "GENBANK_ACCESSION";
+* Select "Gene List" for List Type;
+* and then "Submit List".
+
+  DAVID will now tell you that less than 80% of the list has mapped; that's
+  expected, since there are a number of blank spots in the list.  Select
+  "Continue to submit the IDs that DAVID could map."
+
+* You should now be on Step 2. Select "Functional annotation tool."  Go
+  to that link.
+
+* Now, each of the three views (Clustering, Chart, and Table) will
+  give you more information.
+
+For me, under Clustering, Annotation Cluster 6 shows an enrichment of
+sex-related genes, so I guess that's good, since we're comparing male
+and female blastoderm gene expression from chick!  But this also
+highlights the problems with this kind of analysis -- we can see what
+we want!  Bear in mind that we are really looking more at the
+background of *what genes are expressed* than what genes are
+*differentially* expressed; to do the latter, we'd need to do a larger
+analysis.
+
+.. @CTB pathview: http://pathview.r-forge.r-project.org/pathview.pdf, http://pathview.r-forge.r-project.org/
+
+Next: :doc:`s-data-analysis-2`
