@@ -62,4 +62,10 @@ To submit these to the queue, do::
    qsub chick-tophat-3.sh
    qsub chick-tophat-4.sh
 
-Next: doc:`s-data-analysis`
+And now wait until they're done; you can figure that out by doing::
+
+   qstat -u $USER
+
+to monitor the status of the job; once it goes away, it will be done.
+
+Next: :doc:`s-data-analysis`

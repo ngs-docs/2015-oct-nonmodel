@@ -118,4 +118,4 @@ Take a look at the top of your FASTA file::
 
 Head on over to `the chicken genome browser <http://genome.ucsc.edu/cgi-bin/hgTracks?db=galGal4>`__ and try BLATing the sequence!
 
-:doc:`s-tophat-round2`
+Next: :doc:`s-tophat-round2`

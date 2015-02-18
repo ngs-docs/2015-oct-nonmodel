@@ -45,4 +45,4 @@ You can use the 'nano' editor to modify this file -- type::
 
    nano chick-tophat-2.sh
 
-:doc:`s-even-more-tophat`
+Next: :doc:`s-even-more-tophat`
