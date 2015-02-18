@@ -12,7 +12,9 @@ work entirely on the HPC just yet.  Here are some tips to get started.
 Running TransDecoder to turn transcripts into ORFs
 --------------------------------------------------
 
-::
+cufflinks produces transcripts, but many programs want protein sequences.
+`TransDecoder <http://transdecoder.github.io>`__ will turn transcripts
+into (predicted) peptide sequences::
 
    module load TransDecoder
    TransDecoder.LongOrfs -t cuffmerge_all.fa
@@ -43,8 +45,9 @@ databases into an annotation of your sequences. ::
 
 (The last command doesn't work yet on the HPC!)
 
-This will give you output in a tab-delimited format, `cuffmerge_orfs.pep.tsv <>`__.
+This will give you output in a tab-delimited format, `cuffmerge_orfs.pep.tsv <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick-subset/cuffmerge_orfs.subset.pep.tsv>`__.
 
-This can now be 
+This can then potentially be used to annotate any new genes with GO
+terms and other putative functional annotation.
 
 Next: :doc:`m-advice`
