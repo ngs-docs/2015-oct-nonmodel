@@ -8,7 +8,6 @@ Type::
 and then paste this in::
 
    #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
-   #PBS -A classbuyin
    module load TopHat2/2.0.12
    module load HTSeq/0.6.1
 
@@ -36,7 +35,6 @@ Next, do it for male_repl2::
 and then paste this in::
 
    #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
-   #PBS -A classbuyin
    module load TopHat2/2.0.12
    module load HTSeq/0.6.1
 

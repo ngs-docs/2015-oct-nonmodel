@@ -9,7 +9,7 @@ reads have come from each gene.  We'll be using the `TopHat software
 For this purpose, we've already installed the human reference gene set
 on the HPC (as part of the data you loaded at the beginning).  In this
 case we've loaded in the `Illumina iGenomes project
-<http://cufflinks.cbcb.umd.edu/igenomes.html>`__ into the RNAseq-model
+<http://ccb.jhu.edu/software/tophat/igenomes.shtml>`__ into the RNAseq-model
 data set.
 
 Mapping reads
@@ -41,7 +41,7 @@ Questions:
 Links:
 
 * `TopHat manual <http://ccb.jhu.edu/software/tophat/manual.shtml>`__
-* `Illumina iGenomes project <http://cufflinks.cbcb.umd.edu/igenomes.html>`__
+* `Illumina iGenomes project <http://ccb.jhu.edu/software/tophat/igenomes.shtml>`__
 
 Counting mapped reads percentage
 --------------------------------
