@@ -19,6 +19,7 @@ Tutorials:
    :maxdepth: 2
 
    s-overview
+   s-amazon
    s-quality
    s-building-a-reference.rst
    s-tophat-round2.rst

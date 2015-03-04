@@ -13,27 +13,48 @@ this case we've loaded in the `Illumina iGenomes project
 <http://ccb.jhu.edu/software/tophat/igenomes.shtml>`__ into the
 RNAseq-semimodel location.
 
-See paper:
+See the TopHat and Cufflinks paper:
 
     http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3334321/
+
+Install TopHat and Cufflinks
+----------------------------
+
+Download and install the `TopHat <http://ccb.jhu.edu/software/tophat/index.shtml>`__ and `Cufflinks <http://cole-trapnell-lab.github.io/cufflinks/>`__ software::
+
+   cd ~/
+   curl -O http://ccb.jhu.edu/software/tophat/downloads/tophat-2.0.13.Linux_x86_64.tar.gz
+   tar xzf tophat-2.0.13.Linux_x86_64.tar.gz
+
+   curl -O http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz
+   tar xzf cufflinks-2.2.1.Linux_x86_64.tar.gz
+
+   echo export PATH=$PATH:$HOME/tophat-2.0.13.Linux_x86_64:$HOME/cufflinks-2.2.1.Linux_x86_64 >> ~/.bashrc
+   export PATH=$PATH:$HOME/tophat-2.0.13.Linux_x86_64:$HOME/cufflinks-2.2.1.Linux_x86_64
+
+Grab the genome
+---------------
+
+We will need the chicken genome! We'll grab the UCSC galGal3 genome from `the Illumina iGenomes project <http://ccb.jhu.edu/software/tophat/igenomes.shtml>`__::
+
+   mkdir /mnt/genome
+   cd /mnt/genome
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/Gallus_gallus_UCSC_galGal3.tar.gz
+
+   tar xzvf Gallus_gallus_UCSC_galGal3.tar.gz 
+
 
 Map all the reads to the genome with TopHat
 -------------------------------------------
 
 .. @@ add links etc.
 
-We'll be using the `TopHat software
-<http://ccb.jhu.edu/software/tophat/manual.shtml>`__.
-
 Do::
 
-   module load TopHat2/2.0.12
-
+   cd /mnt/work
    tophat -p 4 \
-       -G  $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Annotation/Genes/genes.gtf \
-       --transcriptome-index=$HOME/RNAseq-semimodel/tophat/transcriptome \
        -o tophat_all \
-       $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
+       /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
     female_repl1_R1.qc.fq.gz,male_repl1_R1.qc.fq.gz,female_repl2_R1.qc.fq.gz,male_repl2_R1.qc.fq.gz \
     female_repl1_R2.qc.fq.gz,male_repl1_R2.qc.fq.gz,female_repl2_R2.qc.fq.gz,male_repl2_R2.qc.fq.gz
 
@@ -118,4 +139,6 @@ Take a look at the top of your FASTA file::
 
 Head on over to `the chicken genome browser <http://genome.ucsc.edu/cgi-bin/hgTracks?db=galGal4>`__ and try BLATing the sequence!
 
-Next: :doc:`s-tophat-round2`
+(End of Day 1)
+
+.. Next: :doc:`s-tophat-round2`

@@ -5,82 +5,93 @@ Short read quality and trimming
 
    Reminder: if you're on Windows, you should install `mobaxterm <http://mobaxterm.mobatek.net/download.html>`__.
 
-Log into the HPC with SSH; use your MSU NetID and log into the machine
-'hpc.msu.edu'.  There copy/paste::
+OK, you should now be logged into your Amazon computer! How exciting!
 
-   cd
-   module load powertools
-   getexample RNAseq-semimodel
+Prepping the computer
+---------------------
 
-This will put all of the example files for today in your home directory
-under the directory 'RNAseq-semimodel'.
+::
 
-0. Getting the data
--------------------
+   sudo chmod a+rwxt /mnt
+   sudo apt-get update
+   sudo apt-get install -y trimmomatic fastqc bowtie2
 
-http://genomebiology.com/content/14/3/R26
+0. Data source
+--------------
 
-http://www.ebi.ac.uk/ena/data/view/SRA055442
+We're going to be using a subset of `chicken data from Ayers et al.,
+2013. <http://genomebiology.com/content/14/3/R26>`__
+
+You can find the full data set on the Short Read Archive under the
+accession number on the paper: http://www.ebi.ac.uk/ena/data/view/SRA055442
+
+We'll be working with RNA from two pooled samples (male and female chick
+blastoderms) -- here are the direct sample links:
 
 http://www.ebi.ac.uk/ena/data/view/SAMN01096082
+
 http://www.ebi.ac.uk/ena/data/view/SAMN01096083
 
 http://www.ebi.ac.uk/ena/data/view/SAMN01096084
+
 http://www.ebi.ac.uk/ena/data/view/SAMN01096085
 
-Note that each
-sample has two replicates, and each replicate has two files.
+Note that each sample has two replicates, and each replicate has two
+files.
 
 **Don't download them**, but if you were downloading these yourself,
 you would want the "Fastq files (ftp)", both File 1 and File 2.  (They
-take a few hours to download!)
-
-We've already loaded the data onto the MSU HPC, and you've loaded
-it with 'module load powertools'.
-
-To log into a compute node, type::
-
-   ~/RNAseq-semimodel/login.sh
-
-If this doesn't work, do::
-
-   ssh dev-intel14-phi
-
-Now do::
-
-   ls -l ~/RNAseq-semimodel/data/
-
-You'll see something like ::
-
-    -r--r--r-- 1 mscholz common-data 6781517200 Dec  9 09:46 SRR534005_1.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7023515467 Dec  9 09:50 SRR534005_2.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7285848617 Dec  9 09:41 SRR534006_1.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7542383700 Dec  9 09:43 SRR534006_2.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7219923066 Dec  9 09:47 SRR536786_1.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7467116873 Dec  9 09:49 SRR536786_2.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7694614208 Dec  9 09:40 SRR536787_1.fastq.gz
-    -r--r--r-- 1 mscholz common-data 7944043814 Dec  9 09:44 SRR536787_2.fastq.gz
-
-These files are each approximately 7-8 GB in size!
+each take a few hours to download!)
 
 1. Copying in some data to work with.
 -------------------------------------
 
-First, make a directory::
+We've loaded subsets of the data onto an Amazon location for you, to
+make everything faster for today's work.  Let's grab the first two files::
 
-   mkdir ~/rnaseq
-   cd ~/rnaseq
+   cd /mnt
+   mkdir data
+   cd data
 
-Copy in a subset of the data (100,000 reads)::
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534005_1.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534005_2.fastq.gz
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534005_1.fastq.gz | head -400000 | gzip > female_repl1_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534005_2.fastq.gz | head -400000 | gzip > female_repl1_R2.fq.gz 
+Now if you type::
 
-These are FASTQ files -- let's take a look::
+   ls -l
+
+you should see something like::
+
+   -rw-rw-r-- 1 ubuntu ubuntu 7920534 Mar  4 14:49 SRR534005_1.fastq.gz
+   -rw-rw-r-- 1 ubuntu ubuntu 8229042 Mar  4 14:49 SRR534005_2.fastq.gz
+
+These are 100,000 read subsets of the original two SRA files.
+
+One problem with these files is that they are writeable - by default, UNIX
+makes things writeable by the file owner.  Let's fix that before we go
+on any further::
+
+   chmod u-w
+
+1. Copying in some data to work with.
+-------------------------------------
+
+First, make a working directory::
+
+   mkdir /mnt/work
+   cd /mnt/work
+
+Now, make a "virtual copy" of the data in your working directory, but under
+better names::
+
+   ln -fs /mnt/data/SRR534005_1.fastq.gz female_repl1_R1.fq.gz 
+   ln -fs /mnt/data/SRR534005_2.fastq.gz female_repl1_R2.fq.gz 
+
+These are FASTQ files -- let's take a look at them::
 
    less female_repl1_R1.fq.gz
 
-(type 'q' to exit less)
+(use the spacebar to scroll down, and type 'q' to exit 'less')
 
 Question:
 
@@ -95,13 +106,10 @@ Links:
 2. FastQC
 ---------
 
-We're going to use `FastQC <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__ to summarize the data.
-
-First, we need to load the FastQC software into our account::
-
-   module load FastQC/0.11.2
-
-(You have to do this each time you log in and want to use FastQC.)
+We're going to use `FastQC
+<http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__ to
+summarize the data. We already installed 'fastqc' on our computer -
+that's what the 'apt-get install' did, above.
 
 Now, run FastQC on both of the female files::
 
@@ -119,18 +127,10 @@ and you will see ::
    female_repl1_R2_fastqc.html
    female_repl1_R2_fastqc.zip
 
-Copy these to your laptop and open them in a browser.  If you're on a
-Mac or Linux machine, you can type::
-
-   scp username@hpc.msu.edu:rnaseq/female*fastqc.* /tmp
-
-and then open the html files in your browser.  For Windows, if you're using
-mobaxterm, most of you should have a file transfer window on the left.
-Click 'refresh' (green circle icon fourth from the left) and then navigate
-into the 'rnaseq' folder; you should see the 'female_repl...' files there.
-Drag and drop those onto your Windows machine.
-
-You can also view my versions: `female_repl1_R1_fastqc.html
+We are *not* going to show you how to look at these files right now -
+you need to copy them to your local computer.  We'll show you that
+tomorrow.  But! we can show you what they look like, because I've
+copied them somewhere public for you: `female_repl1_R1_fastqc.html
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R1_fastqc.html>`__
 and `female_repl1_R2_fastqc.html
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R2_fastqc.html>`__
@@ -149,18 +149,18 @@ Links:
 --------------
 
 Now we're going to do some trimming!  We'll be using
-`Trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__.  For
-a discussion of optimal RNAseq trimming strategies, see `MacManes, 2014 <http://journal.frontiersin.org/Journal/10.3389/fgene.2014.00013/abstract>`__.
+`Trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__, which
+(as with fastqc) we've already installed via apt-get.
 
-First, load the Trimmomatic software::
+The first thing we'll need are the adapters to trim off::
 
-   module load Trimmomatic/0.32
+  curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/TruSeq2-PE.fa
 
-Next, run Trimmomatic::
+Now, to run Trimmomatic:
 
-   java -jar $TRIM/trimmomatic PE female_repl1_R1.fq.gz female_repl1_R2.fq.gz\
+   TrimmomaticPE female_repl1_R1.fq.gz female_repl1_R2.fq.gz\
         female_repl1_R1.qc.fq.gz s1_se female_repl1_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
         LEADING:2 TRAILING:2 \                            
         SLIDINGWINDOW:4:2 \
         MINLEN:25
@@ -169,7 +169,8 @@ You should see output that looks like this::
 
    ...
    Quality encoding detected as phred33
-   Input Read Pairs: 100000 Both Surviving: 95583 (95.58%) Forward Only Surviving: 4262 (4.26%) Reverse Only Surviving: 86 (0.09%) Dropped: 69 (0.07%)
+   Input Read Pairs: 100000 Both Surviving: 96615 (96.62%) Forward Only Surviving: 3282 (3.28%) Reverse Only Surviving: 95 (0.10%) Dropped: 8 (0.01%)
+   TrimmomaticPE: Completed successfully
    ...
 
 Questions:
@@ -181,6 +182,10 @@ Questions:
 * Are parameters different for RNAseq and genomic?
 * What's with these annoyingly long and complicated filenames?
 * What do we do with the single-ended files (s1_se and s2_se?)
+
+For a discussion of optimal RNAseq trimming strategies, see `MacManes,
+2014
+<http://journal.frontiersin.org/Journal/10.3389/fgene.2014.00013/abstract>`__.
 
 Links:
 
@@ -194,9 +199,7 @@ Run FastQC again::
    fastqc female_repl1_R1.qc.fq.gz
    fastqc female_repl1_R2.qc.fq.gz
 
-(Note that you don't need to load the module again.)
-
-Copy them to your laptop and open them, OR you can view mine: `female_repl1_R1.qc_fastqc.html
+And now view my copies of these files: `female_repl1_R1.qc_fastqc.html
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R1.qc_fastqc.html>`__
 and `female_repl1_R2.qc_fastqc.html
 <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R2.qc_fastqc.html>`__
@@ -205,7 +208,7 @@ Let's take a look at the output files::
 
    less female_repl1_R1.qc.fq.gz
 
-(again, use 'q' to exit less).
+(again, use spacebar to scroll, 'q' to exit less).
 
 Questions:
 
@@ -216,37 +219,48 @@ Questions:
 5. Subset and trim the rest of the sequences
 --------------------------------------------
 
-Copy and paste all of the below at once::
+Now let's download all the rest of the samples::
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534006_1.fastq.gz | head -400000 | gzip > female_repl2_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR534006_2.fastq.gz | head -400000 | gzip > female_repl2_R2.fq.gz 
+   cd /mnt/data
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534006_1.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534006_2.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536786_1.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536786_2.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536787_1.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536787_2.fastq.gz
+   chmod u-w *.gz
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536786_1.fastq.gz | head -400000 | gzip > male_repl1_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536786_2.fastq.gz | head -400000 | gzip > male_repl1_R2.fq.gz 
+Go back to the work directory, and copy them in::
 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536787_1.fastq.gz | head -400000 | gzip > male_repl2_R1.fq.gz 
-   gunzip -c ~/RNAseq-semimodel/data/SRR536787_2.fastq.gz | head -400000 | gzip > male_repl2_R2.fq.gz 
+   cd /mnt/work
+   ln -fs /mnt/data/SRR534006_1.fastq.gz female_repl2_R1.fq.gz 
+   ln -fs /mnt/data/SRR534006_2.fastq.gz female_repl2_R2.fq.gz 
 
-   java -jar $TRIM/trimmomatic PE female_repl2_R1.fq.gz female_repl2_R2.fq.gz\
+   ln -fs /mnt/data/SRR536786_1.fastq.gz male_repl1_R1.fq.gz 
+   ln -fs /mnt/data/SRR536786_2.fastq.gz male_repl1_R2.fq.gz 
+
+   ln -fs /mnt/data/SRR536787_1.fastq.gz male_repl2_R1.fq.gz 
+   ln -fs /mnt/data/SRR536787_2.fastq.gz male_repl2_R2.fq.gz 
+
+   TrimmomaticPE female_repl2_R1.fq.gz female_repl2_R2.fq.gz\
         female_repl2_R1.qc.fq.gz s1_se female_repl2_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
         LEADING:2 TRAILING:2 \                            
         SLIDINGWINDOW:4:2 \
         MINLEN:25
 
-   java -jar $TRIM/trimmomatic PE male_repl1_R1.fq.gz male_repl1_R2.fq.gz\
+   TrimmomaticPE male_repl1_R1.fq.gz male_repl1_R2.fq.gz\
         male_repl1_R1.qc.fq.gz s1_se male_repl1_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
         LEADING:2 TRAILING:2 \                            
         SLIDINGWINDOW:4:2 \
         MINLEN:25
    
-   java -jar $TRIM/trimmomatic PE male_repl2_R1.fq.gz male_repl2_R2.fq.gz\
+   TrimmomaticPE male_repl2_R1.fq.gz male_repl2_R2.fq.gz\
         male_repl2_R1.qc.fq.gz s1_se male_repl2_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:$TRIM/adapters/TruSeq3-PE.fa:2:40:15 \
+        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
         LEADING:2 TRAILING:2 \                            
         SLIDINGWINDOW:4:2 \
         MINLEN:25
    
-
 Next: :doc:`s-building-a-reference`
