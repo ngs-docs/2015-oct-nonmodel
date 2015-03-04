@@ -16,8 +16,8 @@ Prepping the computer
    sudo apt-get update
    sudo apt-get install -y trimmomatic fastqc bowtie2
 
-0. Data source
---------------
+Data source
+-----------
 
 We're going to be using a subset of `chicken data from Ayers et al.,
 2013. <http://genomebiology.com/content/14/3/R26>`__
@@ -130,10 +130,10 @@ and you will see ::
 We are *not* going to show you how to look at these files right now -
 you need to copy them to your local computer.  We'll show you that
 tomorrow.  But! we can show you what they look like, because I've
-copied them somewhere public for you: `female_repl1_R1_fastqc.html
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R1_fastqc.html>`__
-and `female_repl1_R2_fastqc.html
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R2_fastqc.html>`__
+copied them somewhere public for you: `female_repl1_R1.fq_fastqc/fastqc_report.html
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R1.fq_fastqc/fastqc_report.html>`__
+and `female_repl1_R2.fq_fastqc/fastqc_report.html
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R2.fq_fastqc/fastqc_report.html>`__.
 
 Questions:
 
@@ -199,10 +199,10 @@ Run FastQC again::
    fastqc female_repl1_R1.qc.fq.gz
    fastqc female_repl1_R2.qc.fq.gz
 
-And now view my copies of these files: `female_repl1_R1.qc_fastqc.html
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R1.qc_fastqc.html>`__
-and `female_repl1_R2.qc_fastqc.html
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/female_repl1_R2.qc_fastqc.html>`__
+And now view my copies of these files: `female_repl1_R1.qc.fq_fastqc/fastqc_report.html
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R1.qc.fq_fastqc/fastqc_report.html>`__
+and `female_repl1_R2.qc.fq_fastqc/fastqc_report.html
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R2.qc.fq_fastqc/fastqc_report.html>`__.
 
 Let's take a look at the output files::
 

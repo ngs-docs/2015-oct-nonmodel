@@ -83,8 +83,6 @@ Build a new transcriptome ("ab initio") from the combined reads using Cufflinks
 Now that we've mapped the reads, let's put them all together into exons
 and gene models::
 
-   module load cufflinks/2.2.1
-
    cufflinks -o cuff_all tophat_all/accepted_hits.bam
 
 .. @@ cufflinks diagram
@@ -100,14 +98,14 @@ We already have some decent gene models; let's merge our new and the old ones::
 
    ls -1 cuff_all/transcripts.gtf > cuff_list.txt
 
-   cuffmerge -g $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Annotation/Genes/genes.gtf \
+   cuffmerge -g /mnt/genome/Gallus_gallus/UCSC/galGal3/Annotation/Archives/archive-2014-05-23-16-03-55/Genes/genes.gtf \
        -o cuffmerge_all \
-       -s $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
+       -s /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
        cuff_list.txt
 
 Do some cleanup::
 
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/remove-nostrand.py
+   curl -O http://2015-mar-semimodel.readthedocs.org/en/latest/_static/remove-nostrand.py
    python remove-nostrand.py cuffmerge_all/merged.gtf > cuffmerge_all/nostrand.gtf
 
 Questions:
@@ -123,7 +121,7 @@ Extracting your new transcriptome sequences
 To get a look at the actual DNA sequences, do::
 
    gffread -w cuffmerge_all.fa \
-           -g $HOME/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
+           -g /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/WholeGenomeFasta/genome.fa \
            cuffmerge_all/nostrand.gtf
 
 Questions:
