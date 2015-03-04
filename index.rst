@@ -1,28 +1,30 @@
-.. labibi documentation master file, created by
-   sphinx-quickstart on Sun Nov  4 10:10:29 2012.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+2015 / March / mRNAseq on semi-model organisms
+==============================================
 
-2014 / December / mRNAseq workshops at Michigan State University
-================================================================
+This workshop was given on March 4 and 5, 2015, by C. Titus Brown,
+Isabelle Laforest-Lapointe, and Tamer Mansour.  See `the workshop
+organization page
+<http://dib-training.readthedocs.org/en/pub/2015-03-04-mRNAseq-semimodel.html>`__
+for more information.
 
-This is the material for two workshops given at MSU by Titus Brown and
-Matt Scholz.  The first workshop (Dec 4/5) was on model organism mRNAseq,
-and the second workshop (Dec 10/11) will be on semi-model organism
-mRNAseq.
+.. figure:: _static/semimodel-rnaseq-pipeline.png
 
-Both workshops were sponsored by iCER, http://icer.msu.edu/, and made
-use of the MSU High Performance Compute Center, http://hpcc.msu.edu/.
+What are semi-model organisms? `One with ok genomes but bad
+transcriptomes
+<http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003998>`__!
+
+Tutorials:
 
 .. toctree::
    :maxdepth: 2
 
-   semi-orgs
-   model-orgs
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   s-overview
+   s-quality
+   s-building-a-reference.rst
+   s-tophat-round2.rst
+   s-more-tophat
+   s-even-more-tophat
+   s-data-analysis
+   s-data-analysis-2
+   m-advice
+   more-resources
