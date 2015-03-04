@@ -156,7 +156,7 @@ The first thing we'll need are the adapters to trim off::
 
   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/TruSeq2-PE.fa
 
-Now, to run Trimmomatic:
+Now, to run Trimmomatic::
 
    TrimmomaticPE female_repl1_R1.fq.gz female_repl1_R2.fq.gz\
         female_repl1_R1.qc.fq.gz s1_se female_repl1_R2.qc.fq.gz s2_se \
