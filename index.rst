@@ -18,8 +18,9 @@ Tutorials:
 .. toctree::
    :maxdepth: 2
 
+   welcome
    s-overview
-   s-amazon
+   amazon/index
    s-quality
    s-building-a-reference.rst
 

@@ -1,15 +1,33 @@
-Learning goals: basic command line, purpose and feel of tools, 80% of way. trial for me ;).  2 days not nec enough, but let's see!
+Welcome!
+========
 
-Safe space
+1. Learning goals
 
-self-intro
+For you:
 
-Amazon and cloud computing
+* purpose and feel of tools;
+* basic command line;
+* 80% of way to a complete analysis;
 
-intro instructors
+For me:
 
-ASK QUESTIONS
+* two day workshops, with Amazon...
+* Davis! Do things work differently in sunny California?
 
-sticky notes
+2. Safe space and code of conduct
 
-hardest bit at beginning. sorry, no other way.
+This is intended to be a safe place for learning! Please ask questions,
+because I guarantee you that your question will help others!
+
+Please see the Software Carpentry workshop Code of Conduct: http://software-carpentry.org/conduct.html
+
+3. Instructor introductions
+
+4. Amazon and cloud computing - why?!
+
+5. Sticky notes and how they work...
+
+6. Warning:
+
+The bit that isn't going to work is at the beginning.  This is unavoidable.
+To reward you, we have a coffee break at 10:15am...
