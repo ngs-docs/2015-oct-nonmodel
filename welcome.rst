@@ -29,8 +29,8 @@ Please see the Software Carpentry workshop Code of Conduct: http://software-carp
 4. Amazon and cloud computing - why?!
 -------------------------------------
 
-5. Sticky notes and how they work...
-------------------------------------
+5. Sticky notes and how they work... + Minute Cards
+---------------------------------------------------
 
 6. Warning:
 -----------
