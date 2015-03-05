@@ -19,7 +19,7 @@ into (predicted) peptide sequences::
    module load TransDecoder
    TransDecoder.LongOrfs -t cuffmerge_all.fa
 
-   curl -O https://raw.githubusercontent.com/ngs-docs/2014-msu-rnaseq/master/files/remove-stop-codon.py
+   curl -O https://raw.githubusercontent.com/ngs-docs/2015-mar-rnaseq/master/files/remove-stop-codon.py
    python remove-stop-codon.py cuffmerge_all.fa.transdecoder_dir/longest_orfs.pep > cuffmerge_orfs.pep
 
 The file 'cuffmerge_orfs.pep' now contains entries that look like this::
@@ -45,7 +45,7 @@ databases into an annotation of your sequences. ::
 
 (The last command doesn't work yet on the HPC!)
 
-This will give you output in a tab-delimited format, `cuffmerge_orfs.pep.tsv <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick-subset/cuffmerge_orfs.subset.pep.tsv>`__.
+This will give you output in a tab-delimited format, `cuffmerge_orfs.pep.tsv <https://github.com/ngs-docs/2015-mar-rnaseq/blob/master/files/chick-subset/cuffmerge_orfs.subset.pep.tsv>`__.
 
 This can then potentially be used to annotate any new genes with GO
 terms and other putative functional annotation.

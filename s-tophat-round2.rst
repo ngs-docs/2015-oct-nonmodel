@@ -10,18 +10,14 @@ We'll again be using the `TopHat software
 Mapping reads
 -------------
 
-Load the TopHat software, if you haven't already::
+Now run TopHat on one of the individual samples::
 
-   module load TopHat2/2.0.12
-
-And now run TopHat::
-
-   cd ~/rnaseq
+   cd /mnt/work
    tophat -p 4 \
        -G cuffmerge_all/nostrand.gtf \
-       --transcriptome-index=$HOME/RNAseq-semimodel/tophat/merged \
+       --transcriptome-index=/mnt/genome/tophat/merged \
        -o tophat_female_repl1 \
-       ~/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
+       /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
        female_repl1_R1.qc.fq.gz female_repl1_R2.qc.fq.gz 
 
 This will take about 15 minutes.
@@ -43,11 +39,16 @@ Making gene counts
 Now that we know which reads go with which gene, we'll use
 `htseq-count <http://www-huber.embl.de/users/anders/HTSeq/doc/count.html>`__.
 
-First, load the PySAM and HTSeq software packages::
+Install::
 
-   module load HTSeq/0.6.1
+   sudo apt-get install -y build-essential python2.7-dev python-numpy \
+         python-matplotlib python-pip zlib1g-dev
+   sudo pip install pysam
+   sudo pip install HTSeq
 
-And next, run HTSeq::
+(This will take about 5 minutes.)
+
+Now run HTSeq::
 
    htseq-count --format=bam --stranded=no --order=pos \
        tophat_female_repl1/accepted_hits.bam \
@@ -67,7 +68,7 @@ DEseq and edgeR want exactly this kind of information!
 
 Questions:
 
-* what are the 'TCONS...' names?
+* what are the 'XLOC...' names?
 * what do these parameters mean?
 * what parameters does HTSeq take?
 * why are we using so many programs?

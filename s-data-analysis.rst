@@ -1,13 +1,6 @@
 Data analysis & differential expression
 =======================================
 
-.. note:: if you want to start from here, you can do::
-
-      mkdir ~/rnaseq
-      cd ~/rnaseq
-
-   and then run the 'curl' commands below.
-
 At this point, you should have four files::
 
    female_repl1_counts.txt
@@ -46,12 +39,12 @@ to do the basic differential expression analysis of our counts.
 
 To run edgeR, you need to write a data loading and manipulation script
 in R.  In this case, I've provided one -- `chick.R
-<https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick.R>`__.
+<https://github.com/ngs-docs/2015-mar-rnaseq/blob/master/files/chick.R>`__.
 This script will load in two samples with two replicates, execute an
 MA plot, do an MDS analysis/plot, and provide a spreadsheet with
 differential expression information in it.  To download it, `click
 here
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick.R>`__.
+<http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick.R>`__.
 
 Links:
 
@@ -62,15 +55,25 @@ Links:
 Running edgeR on a data subset
 ------------------------------
 
-To run the script on the HPC, download the script and data files for
-the 100k read subsets.  At the command line, do::
+.. note:: if you want to start from here on a fresh machine, you can do::
 
-   cd ~/rnaseq
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick.R
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl1_counts.txt
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl2_counts.txt
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl1_counts.txt
-   curl -O http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl2_counts.txt
+      mkdir /mnt/work
+
+   and then run the 'curl' commands below, under "Running edgeR".
+
+First, install R and edgeR::
+
+   sudo apt-get install -y r-base-core r-bioc-edger
+
+Now, to run the script on your Amazon computer, download the script
+and data files for the 100k read subsets.  At the command line, do::
+
+   cd /mnt/work
+   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick.R
+   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl1_counts.txt
+   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl2_counts.txt
+   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl1_counts.txt
+   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl2_counts.txt
 
 These various .txt files are produced by :doc:`s-tophat-round2`, :doc:`s-more-tophat`, and :doc:`s-even-more-tophat`.
 
@@ -80,31 +83,31 @@ Next, to run the R script, do::
    Rscript chick.R
 
 This will produce three files, `chick-edgeR-MA-plot.pdf
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MA-plot.pdf>`__,
+<http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MA-plot.pdf>`__,
 `chick-edgeR-MDS.pdf
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MDS.pdf>`__,
+<http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MDS.pdf>`__,
 and `chick-edgeR.csv
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR.csv>`__;
+<http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR.csv>`__;
 they will be in your ``rnaseq`` folder in your home directory
 on the HPC.  The CSV file can be opened directly in Excel; you can
 also look at it `here
-<https://raw.githubusercontent.com/ngs-docs/2014-msu-rnaseq/master/files/chick-subset/chick-edgeR.csv>`__.
+<https://raw.githubusercontent.com/ngs-docs/2015-mar-rnaseq/master/files/chick-subset/chick-edgeR.csv>`__.
 It consists of five columns: gene name, log fold change, P-value, and
 FDR-adjusted P-value.
 
 If you look closely at `the MA plot
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MA-plot.pdf>`__,
+<http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MA-plot.pdf>`__,
 you'll see that there are three red dots.  These are the genes with a
 False Discovery Rate of 0.2 or less (see `chick.R
-<https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick.R#L28>`__),
+<https://github.com/ngs-docs/2015-mar-rnaseq/blob/master/files/chick.R#L28>`__),
 line 28.
 Note that the axes on the MA plot are counts per million (CPM, X axis) and
 fold change (Y axis).
 
 Next, let's take a look at `chick-edgeR.csv
-<https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick-subset/chick-edgeR.csv>`__.
+<https://github.com/ngs-docs/2015-mar-rnaseq/blob/master/files/chick-subset/chick-edgeR.csv>`__.
 This is a comma-separated value file that you can `download
-<http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR.csv>`__
+<http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR.csv>`__
 and open in Excel; go ahead and do so.
 
 As you can see, it's got the two columns with fold change and counts
@@ -158,14 +161,14 @@ the same spreadsheet as the differentially expressed genes?
 
 As with the R script above, this is a situation where a little bit of
 scripting comes in handy - I've written a small Python script to do this,
-`add-gene-name-to-diffexpr-csv.py <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/add-gene-name-to-diffexpr-csv.py>`__.
+`add-gene-name-to-diffexpr-csv.py <https://github.com/ngs-docs/2015-mar-rnaseq/blob/master/files/add-gene-name-to-diffexpr-csv.py>`__.
 
 To download and run it, do::
 
-   curl -O https://raw.githubusercontent.com/ngs-docs/2014-msu-rnaseq/master/files/add-gene-name-to-diffexpr-csv.py
+   curl -O https://raw.githubusercontent.com/ngs-docs/2015-mar-rnaseq/master/files/add-gene-name-to-diffexpr-csv.py
    python add-gene-name-to-diffexpr-csv.py cuffmerge_all/nostrand.gtf chick-edgeR.csv > chick-edgeR-named.csv
 
-You can `download my copy of this file <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__ and open it in Excel, or you can just `look at it online <https://github.com/ngs-docs/2014-msu-rnaseq/blob/master/files/chick-subset/chick-edgeR-named.csv>`__.  And hey, look, gene names!
+You can `download my copy of this file <http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__ and open it in Excel, or you can just `look at it online <https://github.com/ngs-docs/2015-mar-rnaseq/blob/master/files/chick-subset/chick-edgeR-named.csv>`__.  And hey, look, gene names!
 
 You can look up the NM_ stuff in genbank (actually, googling "genbank
 NM_204286" will bring you right to a birdbase link), and the gene
@@ -196,7 +199,7 @@ The simplest way to do this is to pick an FDR, and select all gene accessions
 above that FDR.  For example:
 
 * go to `DAVID <http://david.abcc.ncifcrf.gov/tools.jsp>`__;
-* Select 'upload', and paste in the first 1,000 accessions from `chick-edgeR-named <http://2014-msu-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__;
+* Select 'upload', and paste in the first 1,000 accessions from `chick-edgeR-named <http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-named.csv>`__;
 * Under "Select identifier", choose "GENBANK_ACCESSION";
 * Select "Gene List" for List Type;
 * and then "Submit List".

@@ -1,28 +1,25 @@
 Processing another sample with TopHat and HTSeq
 ===============================================
 
-Let's script this!
+Rather typing all of this in - let's put this in a text file, so we can
+run the TopHat and HTSeq commands all at once!  This is called a "script".
 
 Type::
 
-   cd ~/rnaseq/
+   cd /mnt/work
    cat > chick-tophat-2.sh <<EOF
 
 and then paste this in::
 
-   module load TopHat2/2.0.12
-   module load PySAM/0.6
-   module load HTSeq/0.6.1
-
-   # go to the 'rnaseq' directory in my home directory
-   cd ~/rnaseq
+   # go to the working directory
+   cd /mnt/work
 
    # now run Tophat!
    tophat \
        -G cuffmerge_all/nostrand.gtf \
-       --transcriptome-index=\$HOME/RNAseq-semimodel/tophat/merged \
+       --transcriptome-index=/mnt/genome/tophat/merged \
        -o tophat_female_repl2 \
-       ~/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
+       /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
        female_repl2_R1.qc.fq.gz female_repl2_R2.qc.fq.gz 
 
    htseq-count --format=bam --stranded=no --order=pos \

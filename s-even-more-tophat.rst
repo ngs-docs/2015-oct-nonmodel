@@ -1,5 +1,8 @@
-Using the HPC to run jobs in parallel
-=====================================
+Setting up more scripts
+=======================
+
+(If you're using an HPC or multiple computers, you can run these in
+parallel; here, we'll just run them one at a time.)
 
 Type::
 
@@ -7,19 +10,15 @@ Type::
 
 and then paste this in::
 
-   #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
-   module load TopHat2/2.0.12
-   module load HTSeq/0.6.1
-
    # go to the 'rnaseq' directory in my home directory
-   cd ~/rnaseq
+   cd /mnt/work
 
    # now run Tophat!
    tophat \
        -G cuffmerge_all/nostrand.gtf \
-       --transcriptome-index=\$HOME/RNAseq-semimodel/tophat/merged \
+       --transcriptome-index=/mnt/genome/tophat/merged \
        -o tophat_male_repl1 \
-       ~/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
+       /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
        male_repl1_R1.qc.fq.gz male_repl1_R2.qc.fq.gz 
 
    htseq-count --format=bam --stranded=no --order=pos \
@@ -34,19 +33,15 @@ Next, do it for male_repl2::
 
 and then paste this in::
 
-   #PBS -l walltime=24:00:00,nodes=1:ppn=2,mem=10gb
-   module load TopHat2/2.0.12
-   module load HTSeq/0.6.1
-
    # go to the 'rnaseq' directory in my home directory
-   cd ~/rnaseq
+   cd /mnt/work
 
    # now run Tophat!
    tophat \
        -G cuffmerge_all/nostrand.gtf \
-       --transcriptome-index=\$HOME/RNAseq-semimodel/tophat/merged \
+       --transcriptome-index=/mnt/genome/tophat/merged \
        -o tophat_male_repl2 \
-       ~/RNAseq-semimodel/reference/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
+       /mnt/genome/Gallus_gallus/UCSC/galGal3/Sequence/Bowtie2Index/genome \
        male_repl2_R1.qc.fq.gz male_repl2_R2.qc.fq.gz 
 
    htseq-count --format=bam --stranded=no --order=pos \
@@ -55,15 +50,10 @@ and then paste this in::
        
    EOF
 
-To submit these to the queue, do::
+and then run them with::
 
-   qsub chick-tophat-3.sh
-   qsub chick-tophat-4.sh
+   bash chick-tophat-3.sh
+   bash chick-tophat-4.sh
 
-And now wait until they're done; you can figure that out by doing::
-
-   qstat -u $USER
-
-to monitor the status of the job; once it goes away, it will be done.
 
 Next: :doc:`s-data-analysis`

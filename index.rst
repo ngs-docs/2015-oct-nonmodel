@@ -23,8 +23,6 @@ Tutorials:
    amazon/index
    s-quality
    s-building-a-reference.rst
-
-..
    s-tophat-round2.rst
    s-more-tophat
    s-even-more-tophat
