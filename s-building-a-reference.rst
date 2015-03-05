@@ -137,4 +137,15 @@ Take a look at the top of your FASTA file::
 
 Head on over to `the chicken genome browser <http://genome.ucsc.edu/cgi-bin/hgTracks?db=galGal4>`__ and try BLATing the sequence!
 
+You can also get statistics for all of the different gene list files
+(.gtf) by doing::
+
+   cuffcompare cuffmerge_all/nostrand.gtf \
+         /mnt/genome/Gallus_gallus/UCSC/galGal3/Annotation/Archives/archive-2014-05-23-16-03-55/Genes/genes.gtf \
+         cuffmerge_all/merged.gtf -o compare
+
+and then looking at compare.stats::
+
+   less compare.stats
+
 Next: :doc:`s-tophat-round2`
