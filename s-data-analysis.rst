@@ -1,7 +1,8 @@
 Data analysis & differential expression
 =======================================
 
-At this point, you should have four files::
+At this point, you should have four files; if you type ``ls *.txt`` you should
+see a list of files that includes these four files::
 
    female_repl1_counts.txt
    female_repl2_counts.txt
