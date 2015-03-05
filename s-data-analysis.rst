@@ -224,4 +224,5 @@ analysis.
 
 .. @CTB pathview: http://pathview.r-forge.r-project.org/pathview.pdf, http://pathview.r-forge.r-project.org/
 
-Next: :doc:`s-data-analysis-2`
+.. Next: :doc:`s-data-analysis-2`
+Next: :doc:`m-advice`
