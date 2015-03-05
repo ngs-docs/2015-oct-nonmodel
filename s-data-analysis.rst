@@ -69,11 +69,11 @@ Now, to run the script on your Amazon computer, download the script
 and data files for the 100k read subsets.  At the command line, do::
 
    cd /mnt/work
-   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick.R
-   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl1_counts.txt
-   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl2_counts.txt
-   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl1_counts.txt
-   curl -O http://2015-marrnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl2_counts.txt
+   curl -O http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick.R
+   curl -O http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl1_counts.txt
+   curl -O http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/female_repl2_counts.txt
+   curl -O http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl1_counts.txt
+   curl -O http://2015-mar-rnaseq.readthedocs.org/en/latest/_static/chick-subset/male_repl2_counts.txt
 
 These various .txt files are produced by :doc:`s-tophat-round2`, :doc:`s-more-tophat`, and :doc:`s-even-more-tophat`.
 
