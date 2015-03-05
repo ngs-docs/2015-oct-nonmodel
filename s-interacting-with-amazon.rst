@@ -22,7 +22,7 @@ Subsetting data
 If you want to generate a small subset of a FASTQ file for testing,
 you can do something like this::
 
-   gunzip -c /mnt/data/SRR534005_1.fastq.gz | head -400000 > sample.fq.gz
+   gunzip -c /mnt/data/SRR534005_1.fastq.gz | head -400000 | gzip > sample.fq.gz
 
 This will take 400,000 lines (or 100,000 FASTQ records) from the beginning
 of the ``SRR534005_1.fastq.gz`` file and put them in the ``sample.fq.gz``
