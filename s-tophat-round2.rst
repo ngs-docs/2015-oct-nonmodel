@@ -43,6 +43,9 @@ Install::
 
    sudo apt-get install -y build-essential python2.7-dev python-numpy \
          python-matplotlib python-pip zlib1g-dev
+
+And then separately::
+
    sudo pip install pysam
    sudo pip install HTSeq
 
