@@ -27,5 +27,6 @@ Tutorials:
    s-more-tophat
    s-even-more-tophat
    s-data-analysis
+   s-interacting-with-amazon
    m-advice
    more-resources
