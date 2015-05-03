@@ -1,0 +1,11 @@
+PASS	Basic Statistics	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+PASS	Per base sequence quality	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+PASS	Per sequence quality scores	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+FAIL	Per base sequence content	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+FAIL	Per base GC content	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+FAIL	Per sequence GC content	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+PASS	Per base N content	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+WARN	Sequence Length Distribution	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+FAIL	Sequence Duplication Levels	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+FAIL	Overrepresented sequences	0Hour_ATCACG_L002_R1_001.qc.fq.gz
+FAIL	Kmer Content	0Hour_ATCACG_L002_R1_001.qc.fq.gz

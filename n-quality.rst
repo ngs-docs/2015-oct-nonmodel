@@ -117,13 +117,13 @@ you need to copy them to your local computer.  We'll show you that
 tomorrow.  But! we can show you what they look like, because I've
 copied them somewhere public for you: `0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html
 <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html>`__
-and `female_repl1_R2.fq_fastqc/fastqc_report.html
-<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R2.fq_fastqc/fastqc_report.html>`__.
+and `0Hour_ATCACG_L002_R2_001.extract_fastqc/fastqc_report.html
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R2_001.extract_fastqc/fastqc_report.html>`__.
 
 Questions:
 
 * What should you pay attention to in the FastQC report?
-* Which is "better", R1 or R2?
+* Which is "better", R1 or R2? And why?
 
 Links:
 
@@ -143,8 +143,10 @@ The first thing we'll need are the adapters to trim off::
 
 Now, to run Trimmomatic::
 
-   TrimmomaticPE female_repl1_R1.fq.gz female_repl1_R2.fq.gz\
-        female_repl1_R1.qc.fq.gz s1_se female_repl1_R2.qc.fq.gz s2_se \
+   TrimmomaticPE 0Hour_ATCACG_L002_R1_001.extract.fastq.gz \
+                 0Hour_ATCACG_L002_R2_001.extract.fastq.gz \
+        0Hour_ATCACG_L002_R1_001.qc.fq.gz s1_se \
+        0Hour_ATCACG_L002_R2_001.qc.fq.gz s2_se \
         ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
         LEADING:2 TRAILING:2 \                            
         SLIDINGWINDOW:4:2 \
@@ -154,9 +156,8 @@ You should see output that looks like this::
 
    ...
    Quality encoding detected as phred33
-   Input Read Pairs: 100000 Both Surviving: 96615 (96.62%) Forward Only Surviving: 3282 (3.28%) Reverse Only Surviving: 95 (0.10%) Dropped: 8 (0.01%)
-   TrimmomaticPE: Completed successfully
-   ...
+Input Read Pairs: 140557 Both Surviving: 138775 (98.73%) Forward Only Surviving: 1776 (1.26%) Reverse Only Surviving: 6 (0.00%) Dropped: 0 (0.00%)
+TrimmomaticPE: Completed successfully   ...
 
 Questions:
 
@@ -166,6 +167,7 @@ Questions:
 * What version of Trimmomatic are we using here? (And FastQC?)
 * Are parameters different for RNAseq and genomic?
 * What's with these annoyingly long and complicated filenames?
+* why are we running R1 and R2 together?
 * What do we do with the single-ended files (s1_se and s2_se?)
 
 For a discussion of optimal RNAseq trimming strategies, see `MacManes,
@@ -179,19 +181,19 @@ Links:
 4. FastQC again
 ---------------
 
-Run FastQC again::
+Run FastQC again on the trimmed files::
 
-   fastqc female_repl1_R1.qc.fq.gz
-   fastqc female_repl1_R2.qc.fq.gz
+   fastqc 0Hour_ATCACG_L002_R1_001.qc.fq.gz
+   fastqc 0Hour_ATCACG_L002_R2_001.qc.fq.gz
 
-And now view my copies of these files: `female_repl1_R1.qc.fq_fastqc/fastqc_report.html
-<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R1.qc.fq_fastqc/fastqc_report.html>`__
-and `female_repl1_R2.qc.fq_fastqc/fastqc_report.html
-<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R2.qc.fq_fastqc/fastqc_report.html>`__.
+And now view my copies of these files: `0Hour_ATCACG_L002_R1_001.qc.fq_fastqc/fastqc_report.html
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.qc.fq_fastqc/fastqc_report.html>`__
+and `0Hour_ATCACG_L002_R2_001.qc.fq_fastqc/fastqc_report.html
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R2_001.qc.fq_fastqc/fastqc_report.html>`__
 
 Let's take a look at the output files::
 
-   less female_repl1_R1.qc.fq.gz
+   less 0Hour_ATCACG_L002_R1_001.qc.fq.gz
 
 (again, use spacebar to scroll, 'q' to exit less).
 
