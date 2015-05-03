@@ -44,7 +44,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'2015-mar-semimodel'
+project = u'2015-may-nonmodel'
 copyright = u'2014 and 2015, C. Titus Brown et al.'
 
 # The version info for the project you're documenting, acts as replacement for

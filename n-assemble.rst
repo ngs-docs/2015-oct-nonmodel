@@ -30,3 +30,13 @@ Install Trinity::
    curl -L -O https://github.com/ged-lab/khmer/raw/v1.3/sandbox/assemstats3.py
 
    python assemstats3.py 300 trinity_out_dir/Trinity.fasta
+
+   gzip -c trinity_out_dir/Trinity.fasta > trinity-nematostella-raw.fa.gz
+
+   ##wget https://raw.githubusercontent.com/ctb/eel-pond/protocols-v0.8.3/rename-with-partitions.py
+   chmod u+x rename-with-partitions.py
+   ./rename-with-partitions.py nema trinity-nematostella-raw.fa.gz
+
+   # trinity-nematostella-raw.renamed.fasta.gz
+
+

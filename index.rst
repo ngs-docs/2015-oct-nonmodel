@@ -17,11 +17,12 @@ Tutorials:
    n-quality
    n-diginorm
    n-assemble
+   n-blast
 
-   s-data-analysis
-   s-interacting-with-amazon
-   m-advice
-   more-resources
+..   s-data-analysis
+..   s-interacting-with-amazon
+..   m-advice
+..   more-resources
 
 Technical information
 ~~~~~~~~~~~~~~~~~~~~~
