@@ -10,33 +10,44 @@ OK, you should now be logged into your Amazon computer! How exciting!
 Prepping the computer
 ---------------------
 
-::
+Before we do anything else, we need to set up a place to work and
+install a few things.
+
+First, let's set up a place to work::
 
    sudo chmod a+rwxt /mnt
+
+This makes '/mnt' a place where we can put data and working files.
+
+----
+
+Next, let's install a few things::
 
    sudo apt-get update
    sudo apt-get install -y trimmomatic fastqc python-pip python-dev
 
+These are the Trimmomatic and FastQC programs, which we'll use below,
+along with some software prerequisites that we'll need for other things
+below.
+
 Data source
 -----------
 
-We're going to be using a subset of @@
-
-You can find the full data set on the Short Read Archive under the
-accession number on the paper: http://www.ebi.ac.uk/ena/data/view/SRA055442 @@
+We're going to be using a subset of data from `Tulin et al., 2013 <http://pubmed.org/pubmed/23731568>`__, a paper looking at early transcription in the
+organism *Nematostella vectensis*, the sea anemone.
 
 1. Copying in some data to work with.
 -------------------------------------
 
-We've loaded subsets of the data onto an Amazon location@@ for you, to
-make everything faster for today's work.  Let's grab the first two files::
+We've loaded subsets of the data onto an Amazon location for you, to
+make everything faster for today's work.  We're going to put the
+files on your computer locally under the directory /mnt/data::
 
    mkdir /mnt/data
-   sudo ln -fs /mnt/data /data
+
+Next, let's grab the data set::
 
    cd /mnt/data
-
-   # @@ break these out into separate files?
    curl -O http://athyra.idyll.org/~t/mrnaseq-subset.tar
    tar xvf mrnaseq-subset.tar
 
@@ -44,12 +55,14 @@ Now if you type::
 
    ls -l
 
-you should see something like @@::
+you should see something like::
 
-   -rw-rw-r-- 1 ubuntu ubuntu 7920534 Mar  4 14:49 SRR534005_1.fastq.gz
-   -rw-rw-r-- 1 ubuntu ubuntu 8229042 Mar  4 14:49 SRR534005_2.fastq.gz
+   -r--r--r-- 1 ubuntu ubuntu   7874107 Dec 14  2013 0Hour_ATCACG_L002_R1_001.extract.fastq.gz
+   -r--r--r-- 1 ubuntu ubuntu   7972058 Dec 14  2013 0Hour_ATCACG_L002_R1_002.extract.fastq.gz
+   ...
 
-These are 100,000 read subsets of the original two SRA files.
+These are subsets of the original data, where we selected for reads
+that belong to a few particular transcripts.
 
 One problem with these files is that they are writeable - by default, UNIX
 makes things writeable by the file owner.  Let's fix that before we go
@@ -57,8 +70,10 @@ on any further::
 
    chmod u-w *
 
-1. Copying in some data to work with.
--------------------------------------
+We'll talk about what these files are below.
+
+1. Copying data into a working location
+---------------------------------------
 
 First, make a working directory; this will be a place where you can futz
 around with a copy of the data without messing up your primary data::
@@ -66,8 +81,8 @@ around with a copy of the data without messing up your primary data::
    mkdir /mnt/work
    cd /mnt/work
 
-Now, make a "virtual copy" of the data in your working directory, but under
-better names::
+Now, make a "virtual copy" of the data in your working directory by
+linking it in -- ::
 
    ln -fs /data/* .
 
@@ -79,10 +94,9 @@ These are FASTQ files -- let's take a look at them::
 
 Question:
 
-* why are some files named SRR*?
-* why are some files named female*?
+* why do the files have DNA in the name?
 * why are there R1 and R2 in the file names?
-* why don't we combine the files?
+* why don't we combine all the files?
 
 Links:
 
@@ -103,22 +117,23 @@ Now, run FastQC on two files::
 
 Now type 'ls'::
 
-   ls
+   ls -d *fastqc*
 
-and you will see @@::
+to list the files, and you should see::
 
-   female_repl1_R1_fastqc.html
-   female_repl1_R1_fastqc.zip
-   female_repl1_R2_fastqc.html
-   female_repl1_R2_fastqc.zip
+
+   0Hour_ATCACG_L002_R1_001.extract_fastqc
+   0Hour_ATCACG_L002_R1_001.extract_fastqc.zip
+   0Hour_ATCACG_L002_R2_001.extract_fastqc
+   0Hour_ATCACG_L002_R2_001.extract_fastqc.zip
 
 We are *not* going to show you how to look at these files right now -
-you need to copy them to your local computer.  We'll show you that
-tomorrow.  But! we can show you what they look like, because I've
-copied them somewhere public for you: `0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html
-<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html>`__
-and `0Hour_ATCACG_L002_R2_001.extract_fastqc/fastqc_report.html
-<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R2_001.extract_fastqc/fastqc_report.html>`__.
+you need to copy them to your local computer to do that.  We'll show
+you that tomorrow.  But! we can show you what they look like, because
+I've made copiesd of them for you:
+
+* `0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html>`__
+* `0Hour_ATCACG_L002_R2_001.extract_fastqc/fastqc_report.html <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R2_001.extract_fastqc/fastqc_report.html>`__
 
 Questions:
 
@@ -165,10 +180,9 @@ Questions:
 * How do you figure out what parameters to use?
 * What adapters do you use?
 * What version of Trimmomatic are we using here? (And FastQC?)
-* Are parameters different for RNAseq and genomic?
+* Do you think parameters are different for RNAseq and genomic data sets?
 * What's with these annoyingly long and complicated filenames?
 * why are we running R1 and R2 together?
-* What do we do with the single-ended files (s1_se and s2_se?)
 
 For a discussion of optimal RNAseq trimming strategies, see `MacManes,
 2014
@@ -186,10 +200,10 @@ Run FastQC again on the trimmed files::
    fastqc 0Hour_ATCACG_L002_R1_001.qc.fq.gz
    fastqc 0Hour_ATCACG_L002_R2_001.qc.fq.gz
 
-And now view my copies of these files: `0Hour_ATCACG_L002_R1_001.qc.fq_fastqc/fastqc_report.html
-<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.qc.fq_fastqc/fastqc_report.html>`__
-and `0Hour_ATCACG_L002_R2_001.qc.fq_fastqc/fastqc_report.html
-<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R2_001.qc.fq_fastqc/fastqc_report.html>`__
+And now view my copies of these files: 
+
+* `0Hour_ATCACG_L002_R1_001.qc.fq_fastqc/fastqc_report.html <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.qc.fq_fastqc/fastqc_report.html>`__
+* `0Hour_ATCACG_L002_R2_001.qc.fq_fastqc/fastqc_report.html <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R2_001.qc.fq_fastqc/fastqc_report.html>`__
 
 Let's take a look at the output files::
 
@@ -199,14 +213,21 @@ Let's take a look at the output files::
 
 Questions:
 
-* Why are some of the reads shorter than others?
 * is the quality trimmed data "better" than before?
 * Does it matter that you still have adapters!?
 
 5. Trim the rest of the sequences
 ---------------------------------
 
-::
+We have a lot of files -- and we really don't want to trim each and
+every one of them by typing in a command for each pair! Here we'll
+make use of a great feature of the UNIX command line -- the ability to
+automate such tasks.
+
+Here's a for loop that you can run - we'll walk through what it does
+while it's running::
+
+  rm -f orphans.fq
 
   for filename in *_R1_*.extract.fastq.gz
   do
@@ -218,6 +239,7 @@ Questions:
         baseR2=${base/_R1_/_R2_}
         echo $baseR2
 
+        # finally, run Trimmomatic
         TrimmomaticPE ${base}.extract.fastq.gz ${baseR2}.extract.fastq.gz \
            ${base}.qc.fq.gz s1_se \
            ${baseR2}.qc.fq.gz s2_se \
@@ -225,26 +247,43 @@ Questions:
            LEADING:2 TRAILING:2 \                            
            SLIDINGWINDOW:4:2 \
            MINLEN:25
+
+        # save the orphans
+        cat s1_se s2_se >> orphans.fq
   done
+
+Things to mention --
+
+* # are comments;
+* anywhere you see a '$' is replaced by the value of the variable
+  after it, so e.g. $filename is replaced by each of the files
+  matching *_R1_*.extract.fastq.gz, once for each time through the
+  loop;
+* we have to do complicated things to the filenames to get this to work, which
+  is what the ${base/_R1_/_R2_} stuff is about.
+* what's with 'orphans.fq'??
 
 Questions:
 
-* what is a for loop?
 * how do you figure out if it's working?
    - copy/paste it from Word
    - put in lots of echo
    - edit one line at a time
-* how on earth do you figure this stuff out?
+* how on earth do you figure out how to do this?!
 
 6. Interleave the sequences
 ---------------------------
 
-Install khmer::
+Next, we need to take these R1 and R2 sequences and convert them into
+interleaved form ,for the next step.  To do this, we'll use scripts
+from the `khmer package <http://khmer.readthedocs.org>`__, which we
+need to install::
 
   sudo pip install -U setuptools
   sudo pip install khmer==1.3
 
-::
+Now let's use a for loop again - you might notice this is only a minor
+modification of the previous for loop... ::
 
   for filename in *_R1_*.qc.fq.gz
   do
@@ -262,6 +301,10 @@ Install khmer::
         interleave-reads.py ${base}.qc.fq.gz ${baseR2}.qc.fq.gz | \
             gzip > $output
   done
+
+  gzip orphans.fq
+
+----
    
 Next: :doc:`n-diginorm`
 
