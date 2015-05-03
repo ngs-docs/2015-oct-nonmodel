@@ -4,7 +4,7 @@ BLASTing your assembled data
 ::
 
    
-   sudo apt-get -y install lighttpd blast2
+   sudo apt-get -y install lighttpd blast2 git-core
 
 ::
 
@@ -23,10 +23,10 @@ BLASTing your assembled data
    cd
 
    git clone https://github.com/ctb/blastkit.git -b 2015-may-nonmodel
-   ./blastkit/configure-lighttpd.sh
+   sudo ./blastkit/configure-lighttpd.sh
 
    cd blastkit/www
-   ln -fs $PWD /var/www/blastkit
+   sudo ln -fs $PWD /var/www/blastkit
 
    mkdir files
    chmod a+rxwt files

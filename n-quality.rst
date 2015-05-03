@@ -15,7 +15,7 @@ Prepping the computer
    sudo chmod a+rwxt /mnt
 
    sudo apt-get update
-   sudo apt-get install -y trimmomatic fastqc python-pip
+   sudo apt-get install -y trimmomatic fastqc python-pip python-dev
 
 Data source
 -----------
@@ -55,7 +55,7 @@ One problem with these files is that they are writeable - by default, UNIX
 makes things writeable by the file owner.  Let's fix that before we go
 on any further::
 
-   chmod u-w
+   chmod u-w *
 
 1. Copying in some data to work with.
 -------------------------------------
@@ -153,10 +153,11 @@ Now, to run Trimmomatic::
         MINLEN:25
 
 You should see output that looks like this::
+
    ...
    Quality encoding detected as phred33
-Input Read Pairs: 140557 Both Surviving: 138775 (98.73%) Forward Only Surviving: 1776 (1.26%) Reverse Only Surviving: 6 (0.00%) Dropped: 0 (0.00%)
-TrimmomaticPE: Completed successfully   ...
+   Input Read Pairs: 140557 Both Surviving: 138775 (98.73%) Forward Only Surviving: 1776 (1.26%) Reverse Only Surviving: 6 (0.00%) Dropped: 0 (0.00%)
+   TrimmomaticPE: Completed successfully   ...
 
 Questions:
 
