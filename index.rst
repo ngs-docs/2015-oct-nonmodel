@@ -14,7 +14,7 @@ Tutorials:
    welcome
    s-overview
    amazon/index
-   s-quality
+   n-quality
    s-building-a-reference.rst
    s-tophat-round2.rst
    s-more-tophat

@@ -13,54 +13,38 @@ Prepping the computer
 ::
 
    sudo chmod a+rwxt /mnt
+
    sudo apt-get update
-   sudo apt-get install -y trimmomatic fastqc bowtie2
+   sudo apt-get install -y trimmomatic fastqc
 
 Data source
 -----------
 
-We're going to be using a subset of `chicken data from Ayers et al.,
-2013. <http://genomebiology.com/content/14/3/R26>`__
+We're going to be using a subset of @@
 
 You can find the full data set on the Short Read Archive under the
-accession number on the paper: http://www.ebi.ac.uk/ena/data/view/SRA055442
-
-We'll be working with RNA from two pooled samples (male and female chick
-blastoderms) -- here are the direct sample links:
-
-http://www.ebi.ac.uk/ena/data/view/SAMN01096082
-
-http://www.ebi.ac.uk/ena/data/view/SAMN01096083
-
-http://www.ebi.ac.uk/ena/data/view/SAMN01096084
-
-http://www.ebi.ac.uk/ena/data/view/SAMN01096085
-
-Note that each sample has two replicates, and each replicate has two
-files.
-
-**Don't download them**, but if you were downloading these yourself,
-you would want the "Fastq files (ftp)", both File 1 and File 2.  (They
-each take a few hours to download!)
+accession number on the paper: http://www.ebi.ac.uk/ena/data/view/SRA055442 @@
 
 1. Copying in some data to work with.
 -------------------------------------
 
-We've loaded subsets of the data onto an Amazon location for you, to
+We've loaded subsets of the data onto an Amazon location@@ for you, to
 make everything faster for today's work.  Let's grab the first two files::
 
-   cd /mnt
-   mkdir data
-   cd data
+   mkdir /mnt/data
+   sudo ln -fs /mnt/data /data
 
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534005_1.fastq.gz
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534005_2.fastq.gz
+   cd /mnt/data
+
+   # @@ break these out into separate files?
+   curl -O http://athyra.idyll.org/~t/mrnaseq-subset.tar
+   tar xvf mrnaseq-subset.tar
 
 Now if you type::
 
    ls -l
 
-you should see something like::
+you should see something like @@::
 
    -rw-rw-r-- 1 ubuntu ubuntu 7920534 Mar  4 14:49 SRR534005_1.fastq.gz
    -rw-rw-r-- 1 ubuntu ubuntu 8229042 Mar  4 14:49 SRR534005_2.fastq.gz
@@ -76,7 +60,8 @@ on any further::
 1. Copying in some data to work with.
 -------------------------------------
 
-First, make a working directory::
+First, make a working directory; this will be a place where you can futz
+around with a copy of the data without messing up your primary data::
 
    mkdir /mnt/work
    cd /mnt/work
@@ -84,12 +69,11 @@ First, make a working directory::
 Now, make a "virtual copy" of the data in your working directory, but under
 better names::
 
-   ln -fs /mnt/data/SRR534005_1.fastq.gz female_repl1_R1.fq.gz 
-   ln -fs /mnt/data/SRR534005_2.fastq.gz female_repl1_R2.fq.gz 
+   ln -fs /data/* .
 
 These are FASTQ files -- let's take a look at them::
 
-   less female_repl1_R1.fq.gz
+   less 0Hour_ATCACG_L002_R1_001.extract.fastq.gz
 
 (use the spacebar to scroll down, and type 'q' to exit 'less')
 
@@ -97,7 +81,8 @@ Question:
 
 * why are some files named SRR*?
 * why are some files named female*?
-* why are there R1 and R2 in the name?
+* why are there R1 and R2 in the file names?
+* why don't we combine the files?
 
 Links:
 
@@ -111,16 +96,16 @@ We're going to use `FastQC
 summarize the data. We already installed 'fastqc' on our computer -
 that's what the 'apt-get install' did, above.
 
-Now, run FastQC on both of the female files::
+Now, run FastQC on two files::
 
-   fastqc female_repl1_R1.fq.gz
-   fastqc female_repl1_R2.fq.gz
+   fastqc 0Hour_ATCACG_L002_R1_001.extract.fastq.gz
+   fastqc 0Hour_ATCACG_L002_R2_001.extract.fastq.gz
 
 Now type 'ls'::
 
    ls
 
-and you will see ::
+and you will see @@::
 
    female_repl1_R1_fastqc.html
    female_repl1_R1_fastqc.zip
