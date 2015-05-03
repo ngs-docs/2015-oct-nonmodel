@@ -1,0 +1,11 @@
+PASS	Basic Statistics	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+PASS	Per base sequence quality	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+PASS	Per sequence quality scores	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+FAIL	Per base sequence content	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+FAIL	Per base GC content	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+FAIL	Per sequence GC content	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+PASS	Per base N content	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+PASS	Sequence Length Distribution	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+FAIL	Sequence Duplication Levels	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+WARN	Overrepresented sequences	0Hour_ATCACG_L002_R2_001.extract.fastq.gz
+FAIL	Kmer Content	0Hour_ATCACG_L002_R2_001.extract.fastq.gz

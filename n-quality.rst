@@ -115,8 +115,8 @@ and you will see @@::
 We are *not* going to show you how to look at these files right now -
 you need to copy them to your local computer.  We'll show you that
 tomorrow.  But! we can show you what they look like, because I've
-copied them somewhere public for you: `female_repl1_R1.fq_fastqc/fastqc_report.html
-<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R1.fq_fastqc/fastqc_report.html>`__
+copied them somewhere public for you: `0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/0Hour_ATCACG_L002_R1_001.extract_fastqc/fastqc_report.html>`__
 and `female_repl1_R2.fq_fastqc/fastqc_report.html
 <http://2015-mar-semimodel.readthedocs.org/en/latest/_static/female_repl1_R2.fq_fastqc/fastqc_report.html>`__.
 
