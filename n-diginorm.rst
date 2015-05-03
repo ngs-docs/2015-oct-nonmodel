@@ -68,3 +68,7 @@ Let's remove some of the detritus before moving on::
 
    rm *.pe *.se *.abundfilt *.keep
    rm normC20k20.ct
+
+----
+   
+Next: :doc:`n-assemble`
