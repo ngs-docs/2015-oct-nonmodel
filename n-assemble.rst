@@ -33,7 +33,7 @@ Install Trinity::
 
    gzip -c trinity_out_dir/Trinity.fasta > trinity-nematostella-raw.fa.gz
 
-   ##wget https://raw.githubusercontent.com/ctb/eel-pond/protocols-v0.8.3/rename-with-partitions.py
+   curl -O http://2015-may-nonmodel.readthedocs.org/en/dev/_static/rename-with-partitions.py
    chmod u+x rename-with-partitions.py
    ./rename-with-partitions.py nema trinity-nematostella-raw.fa.gz
 

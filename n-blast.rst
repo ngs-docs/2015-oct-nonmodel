@@ -3,28 +3,34 @@ BLASTing your assembled data
 
 ::
 
-   apt-get -y install lighttpd blast2
-   pip install pygr whoosh Pillow Jinja2 \
+   
+   sudo apt-get -y install lighttpd blast2
+
+::
+
+   sudo pip install pygr whoosh Pillow Jinja2 \
        git+https://github.com/ctb/pygr-draw.git screed
-   ln -s /usr/bin/blastall /usr/local/bin/
+   sudo ln -s /usr/bin/blastall /usr/local/bin/
 
 
-   cd /etc/lighttpd/conf-enabled
-   ln -fs ../conf-available/10-cgi.conf ./
-   echo 'cgi.assign = ( ".cgi" => "" )' >> 10-cgi.conf
-   echo 'index-file.names += ( "index.cgi" ) ' >> 10-cgi.conf
+   #cd /etc/lighttpd/conf-enabled
+   #ln -fs ../conf-available/10-cgi.conf ./
+   #echo 'cgi.assign = ( ".cgi" => "" )' >> 10-cgi.conf
+   #echo 'index-file.names += ( "index.cgi" ) ' >> 10-cgi.conf
 
-   /etc/init.d/lighttpd restart
+   #/etc/init.d/lighttpd restart
 
    cd
-   git clone https://github.com/ctb/blastkit.git -b ec2
+
+   git clone https://github.com/ctb/blastkit.git -b 2015-may-nonmodel
+   ./blastkit/configure-lighttpd.sh
+
    cd blastkit/www
    ln -fs $PWD /var/www/blastkit
 
    mkdir files
    chmod a+rxwt files
    chmod +x /home/ubuntu
-
 
    cd /home/ubuntu/blastkit
    python ./check.py
