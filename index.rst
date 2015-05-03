@@ -15,10 +15,9 @@ Tutorials:
    s-overview
    amazon/index
    n-quality
-   s-building-a-reference.rst
-   s-tophat-round2.rst
-   s-more-tophat
-   s-even-more-tophat
+   n-diginorm
+   n-assemble
+
    s-data-analysis
    s-interacting-with-amazon
    m-advice

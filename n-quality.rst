@@ -15,7 +15,7 @@ Prepping the computer
    sudo chmod a+rwxt /mnt
 
    sudo apt-get update
-   sudo apt-get install -y trimmomatic fastqc
+   sudo apt-get install -y trimmomatic fastqc python-pip
 
 Data source
 -----------
@@ -153,7 +153,6 @@ Now, to run Trimmomatic::
         MINLEN:25
 
 You should see output that looks like this::
-
    ...
    Quality encoding detected as phred33
 Input Read Pairs: 140557 Both Surviving: 138775 (98.73%) Forward Only Surviving: 1776 (1.26%) Reverse Only Surviving: 6 (0.00%) Dropped: 0 (0.00%)
@@ -203,51 +202,65 @@ Questions:
 * is the quality trimmed data "better" than before?
 * Does it matter that you still have adapters!?
 
-5. Subset and trim the rest of the sequences
---------------------------------------------
+5. Trim the rest of the sequences
+---------------------------------
 
-Now let's download all the rest of the samples::
+::
 
-   cd /mnt/data
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534006_1.fastq.gz
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR534006_2.fastq.gz
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536786_1.fastq.gz
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536786_2.fastq.gz
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536787_1.fastq.gz
-   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-semi-2015-03-04/SRR536787_2.fastq.gz
-   chmod u-w *.gz
+  for filename in *_R1_*.extract.fastq.gz
+  do
+        # first, make the base by removing .extract.fastq.gz
+        base=$(basename $filename .extract.fastq.gz)
+        echo $base
 
-Go back to the work directory, and copy them in::
+        # now, construct the R2 filename by replacing R1 with R2
+        baseR2=${base/_R1_/_R2_}
+        echo $baseR2
 
-   cd /mnt/work
-   ln -fs /mnt/data/SRR534006_1.fastq.gz female_repl2_R1.fq.gz 
-   ln -fs /mnt/data/SRR534006_2.fastq.gz female_repl2_R2.fq.gz 
+        TrimmomaticPE ${base}.extract.fastq.gz ${baseR2}.extract.fastq.gz \
+           ${base}.qc.fq.gz s1_se \
+           ${baseR2}.qc.fq.gz s2_se \
+           ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
+           LEADING:2 TRAILING:2 \                            
+           SLIDINGWINDOW:4:2 \
+           MINLEN:25
+  done
 
-   ln -fs /mnt/data/SRR536786_1.fastq.gz male_repl1_R1.fq.gz 
-   ln -fs /mnt/data/SRR536786_2.fastq.gz male_repl1_R2.fq.gz 
+Questions:
 
-   ln -fs /mnt/data/SRR536787_1.fastq.gz male_repl2_R1.fq.gz 
-   ln -fs /mnt/data/SRR536787_2.fastq.gz male_repl2_R2.fq.gz 
+* what is a for loop?
+* how do you figure out if it's working?
+   - copy/paste it from Word
+   - put in lots of echo
+   - edit one line at a time
+* how on earth do you figure this stuff out?
 
-   TrimmomaticPE female_repl2_R1.fq.gz female_repl2_R2.fq.gz\
-        female_repl2_R1.qc.fq.gz s1_se female_repl2_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
-        LEADING:2 TRAILING:2 \                            
-        SLIDINGWINDOW:4:2 \
-        MINLEN:25
+6. Interleave the sequences
+---------------------------
 
-   TrimmomaticPE male_repl1_R1.fq.gz male_repl1_R2.fq.gz\
-        male_repl1_R1.qc.fq.gz s1_se male_repl1_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
-        LEADING:2 TRAILING:2 \                            
-        SLIDINGWINDOW:4:2 \
-        MINLEN:25
+Install khmer::
+
+  sudo pip install -U setuptools
+  sudo pip install khmer==1.3
+
+::
+
+  for filename in *_R1_*.qc.fq.gz
+  do
+        # first, make the base by removing .extract.fastq.gz
+        base=$(basename $filename .qc.fq.gz)
+        echo $base
+
+        # now, construct the R2 filename by replacing R1 with R2
+        baseR2=${base/_R1_/_R2_}
+        echo $baseR2
+
+        # construct the output filename
+        output=${base/_R1_/}.pe.qc.fq.gz
+
+        interleave-reads.py ${base}.qc.fq.gz ${baseR2}.qc.fq.gz | \
+            gzip > $output
+  done
    
-   TrimmomaticPE male_repl2_R1.fq.gz male_repl2_R2.fq.gz\
-        male_repl2_R1.qc.fq.gz s1_se male_repl2_R2.qc.fq.gz s2_se \
-        ILLUMINACLIP:TruSeq2-PE.fa:2:40:15 \
-        LEADING:2 TRAILING:2 \                            
-        SLIDINGWINDOW:4:2 \
-        MINLEN:25
-   
-Next: :doc:`s-building-a-reference`
+Next: :doc:`n-diginorm`
+
