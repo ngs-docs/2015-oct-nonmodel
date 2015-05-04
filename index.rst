@@ -17,7 +17,7 @@ Tutorials:
    n-quality
    n-diginorm
    n-assemble
-   n-blast
+   annotate
 
 ..   s-data-analysis
 ..   s-interacting-with-amazon
