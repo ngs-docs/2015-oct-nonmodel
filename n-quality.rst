@@ -50,7 +50,6 @@ Next, let's grab part of the data set::
    cd /mnt/data
    curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R1_001.extract.fastq.gz
    curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R2_001.extract.fastq.gz
-   curl -O http://athyra.idyll.org/~t/mrnaseq-subset.tar
 
 Now if you type::
 
@@ -85,7 +84,7 @@ around with a copy of the data without messing up your primary data::
 Now, make a "virtual copy" of the data in your working directory by
 linking it in -- ::
 
-   ln -fs /data/* .
+   ln -fs /mnt/data/* .
 
 These are FASTQ files -- let's take a look at them::
 
