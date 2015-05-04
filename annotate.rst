@@ -1,5 +1,5 @@
 Annotation of denovo transcriptome
-----------------------------------
+==================================
 
 Indentify the Gene/Transcript relationships:
 --------------------------------------------
