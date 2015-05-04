@@ -30,7 +30,7 @@ of the errors (thus further decreasing the memory requirements) --::
 
    filter-abund.py -V normC20k20.ct *.keep
 
-See our paper `Zhang et al., 2014 <http://www.ncbi.nlm.nih.gov/pubmed/25062443`>__, Table 3, for more information on k-mer trimming effects.
+See our paper `Zhang et al., 2014 <http://www.ncbi.nlm.nih.gov/pubmed/25062443`>`__, Table 3, for more information on k-mer trimming effects.
 
 Now, take all of the paired-end files and split them into paired and
 orphaned reads::

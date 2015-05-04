@@ -55,10 +55,10 @@ b) Optional: Uniref90 which provides clustered sets of protein sequences in a wa
 
     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
     mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
-    gunzip uniprot_uniref90.trinotate.pep.g
+    gunzip uniprot_uniref90.trinotate.pep.gz
     makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
   
-Run blast to find homolies
+Run blast to find homologies
 
 1. search Trinity transcripts::
    
