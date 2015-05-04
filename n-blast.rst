@@ -40,3 +40,7 @@ Now, copy in your newly created transcriptome::
 You can now access your BLAST server at http://<amazon machine
 name>/blastkit/.  Note that you will need to enable HTTP access on
 your Amazon firewall settings.
+
+If you want to use something that will get you results with the test
+data set, try BLASTing `zebrafish lethal giant larvae homolog
+<http://www.ncbi.nlm.nih.gov/protein/528474680?report=fasta>`__.
