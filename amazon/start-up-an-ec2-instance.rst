@@ -29,8 +29,7 @@ Then click on Launch Instance.
 Select the machine operating system to boot
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Choose 'Community AMIs', enter 'beacon' into the search box, and
-click on 'Select'.
+Find the "Ubuntu Server 14.04" image in the first list to show up.
 
 .. image:: images/ec2-3.png
    :width: 80%
@@ -38,10 +37,7 @@ click on 'Select'.
 Choose the machine size
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Select 'General purpose', 'm1.xlarge', and then 'Review and Launch'.
-
-Enter 'ami-7f340c16' into the search box and click "search".  Select
-it, and hit Continue.
+Select 'General purpose', 'm3.xlarge', and then 'Review and Launch'.
 
 .. image:: images/ec2-4.png
    :width: 80%

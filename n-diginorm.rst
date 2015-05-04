@@ -26,9 +26,11 @@ Next, run diginorm on the orphaned reads (from trimming)::
    normalize-by-median.py -l normC20k20.ct -s normC20k20.ct orphans.fq.gz
 
 Do k-mer abundance trimming on the reads, which will eliminate the majority
-of the errors (thus further decreasing the memory requirements) -- ::
+of the errors (thus further decreasing the memory requirements) --::
 
    filter-abund.py -V normC20k20.ct *.keep
+
+See our paper `Zhang et al., 2014 <http://www.ncbi.nlm.nih.gov/pubmed/25062443`>__, Table 3, for more information on k-mer trimming effects.
 
 Now, take all of the paired-end files and split them into paired and
 orphaned reads::

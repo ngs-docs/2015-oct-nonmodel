@@ -10,7 +10,7 @@ and find the "Public DNS".  This is the public name of your computer
 on the Internet.
 
 Copy this name, and connect to that computer with ssh under the username
-'root', as follows.
+'ubuntu', as follows.
 
 First, find your private key file; it's the .pem file you downloaded
 when starting up your EC2 instance.  It should be in your Downloads
@@ -24,10 +24,10 @@ to set the permissions on the private key file to "closed to all evildoers".
 
 Then type::
 
-  ssh -i ~/Desktop/amazon.pem root@ec2-???-???-???-???.compute-1.amazonaws.com
+  ssh -i ~/Desktop/amazon.pem ubuntu@ec2-???-???-???-???.compute-1.amazonaws.com
 
 
-Here, you're logging in as user 'root' to the machine
+Here, you're logging in as user 'ubuntu' to the machine
 'ec2-174-129-122-189.compute-1.amazonaws.com' using the authentication
 key located in 'amazon.pem' on your Desktop.
 

@@ -12,7 +12,7 @@ Tutorials:
    :maxdepth: 2
 
    welcome
-   s-overview
+   n-overview
    amazon/index
    n-quality
    n-diginorm

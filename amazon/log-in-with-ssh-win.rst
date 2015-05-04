@@ -2,7 +2,7 @@
 Logging into your new instance "in the cloud" (Windows version)
 ===============================================================
 
-Download Putty and Puttygen from here: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+**First**, Download Putty and Puttygen from here: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
 Generate a ppk file from your pem file
 ======================================
@@ -47,7 +47,7 @@ by puttygen).  Then select 'Open'.
 .. image:: images/win-putty-2.png
    :width: 50%
 
-Log in as "root".
+Log in as "ubuntu".
 
 .. image:: images/win-putty-3.png
    :width: 50%
