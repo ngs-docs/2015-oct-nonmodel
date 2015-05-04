@@ -13,10 +13,7 @@ We need to install Transdecoder to do this job::
 
    cd
    sudo cpan URI::Escape
-   .. note::
-
-      type yes for all interactive questions
-
+   .. note:: type yes for all interactive questions
    curl -L https://github.com/TransDecoder/TransDecoder/archive/2.0.1.tar.gz > transdecoder.tar.gz
    tar xzf transdecoder.tar.gz
    mv TransDecoder* TransDecoder
@@ -33,11 +30,12 @@ Capturing BLAST Homologies
 Install BLAST+ (http://www.ncbi.nlm.nih.gov/books/NBK52640/)::
 
    sudo apt-get install -y ncbi-blast+
-   #wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-*+-x64-linux.tar.gz
-   #tar zxvpf ncbi-blast*.tar.gz
-   #rm ncbi-blast*.tar.gz
-   #mv ncbi-blast* blast+
-   #export PATH=”$PATH:$HOME/blast+/bin”
+
+.. wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-*+-x64-linux.tar.gz
+   tar zxvpf ncbi-blast*.tar.gz
+   rm ncbi-blast*.tar.gz
+   mv ncbi-blast* blast+
+   export PATH=”$PATH:$HOME/blast+/bin”
 
 Get the required sequence databases and prepare local blast databases 
 a) SwissProt databse: The UniProt Knowledgebase which include the Manually annotated proteins::
