@@ -84,7 +84,7 @@ around with a copy of the data without messing up your primary data::
 Now, make a "virtual copy" of the data in your working directory by
 linking it in -- ::
 
-   ln -fs /data/* .
+   ln -fs /mnt/data/* .
 
 These are FASTQ files -- let's take a look at them::
 
