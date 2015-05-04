@@ -17,6 +17,7 @@ We need to install Transdecoder to do this job::
 .. note:: type yes for all interactive questions
 
 ::
+
    curl -L https://github.com/TransDecoder/TransDecoder/archive/2.0.1.tar.gz > transdecoder.tar.gz
    tar xzf transdecoder.tar.gz
    mv TransDecoder* TransDecoder
