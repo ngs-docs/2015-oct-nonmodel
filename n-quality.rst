@@ -45,11 +45,12 @@ files on your computer locally under the directory /mnt/data::
 
    mkdir /mnt/data
 
-Next, let's grab the data set::
+Next, let's grab part of the data set::
 
    cd /mnt/data
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R1_001.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R2_001.extract.fastq.gz
    curl -O http://athyra.idyll.org/~t/mrnaseq-subset.tar
-   tar xvf mrnaseq-subset.tar
 
 Now if you type::
 
@@ -219,7 +220,24 @@ Questions:
 5. Trim the rest of the sequences
 ---------------------------------
 
-We have a lot of files -- and we really don't want to trim each and
+First download the rest of the data::
+
+   cd /mnt/data
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R1_002.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R1_003.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R1_004.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R1_005.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R2_002.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R2_003.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R2_004.extract.fastq.gz
+   curl -O -L http://dib-training.ucdavis.edu.s3.amazonaws.com/mRNAseq-non-2015-05-04/0Hour_ATCACG_L002_R2_005.extract.fastq.gz
+
+And link it in::
+
+   cd /mnt/work
+   ln -fs /mnt/data/*.fastq.gz .
+
+Now we have a lot of files -- and we really don't want to trim each and
 every one of them by typing in a command for each pair! Here we'll
 make use of a great feature of the UNIX command line -- the ability to
 automate such tasks.

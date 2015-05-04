@@ -50,4 +50,6 @@ This last command will give you
 ``trinity-nematostella-raw.renamed.fasta.gz``, which contains all of
 the renamed sequences.
 
-
+----
+   
+Next: :doc:`n-blast`

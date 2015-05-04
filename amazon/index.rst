@@ -2,6 +2,20 @@
 Getting started with Amazon EC2
 ===============================
 
+Short version:
+
+* go to http://aws.amazon.com/, log in, then "EC2" (upper left);
+* select "Launch instance";
+* select "Ubuntu 14.04" from the list;
+* select "m3.xlarge" from the list (towards bottom of "General purpose");
+* click "Review and launch"
+* select "Launch";
+* if your first time through, create a key pair; otherwise select existing;
+* click "launch instance"
+
+More details:
+~~~~~~~~~~~~~
+
 .. toctree::
    :maxdepth: 2
 
@@ -15,7 +29,7 @@ A final checklist:
 
 - EC2 instance is running;
 - used ubuntu 14.04
-- NOT micro instance (m1.large, or bigger);
+- NOT a micro instance (m3.xlarge, or bigger);
 
 .. - SSH, HTTP, HTTPS are enabled on the security group;
 
