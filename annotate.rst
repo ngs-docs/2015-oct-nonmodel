@@ -41,18 +41,18 @@ Get the required sequence databases and prepare local blast databases
 
 a) SwissProt databse: The UniProt Knowledgebase which include the Manually annotated proteins::
 
-   cd /mnt/work
-   wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_sprot.trinotate_v2.0.pep.gz
-   mv uniprot_sprot.trinotate_v2.0.pep.gz uniprot_sprot.trinotate.pep.gz
-   gunzip uniprot_sprot.trinotate.pep.gz
-   makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
+    cd /mnt/work
+    wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_sprot.trinotate_v2.0.pep.gz
+    mv uniprot_sprot.trinotate_v2.0.pep.gz uniprot_sprot.trinotate.pep.gz
+    gunzip uniprot_sprot.trinotate.pep.gz
+    makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
 
 b) Optional: Uniref90 which provides clustered sets of protein sequences in a way such that each cluster is composed of sequences that have at least 90% sequence identity to, and 80% overlap with, the longest sequence::
 
-   wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
-   mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
-   gunzip uniprot_uniref90.trinotate.pep.g
-   makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
+    wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
+    mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
+    gunzip uniprot_uniref90.trinotate.pep.g
+    makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
   
 Run blast to find homolies
 
@@ -75,15 +75,16 @@ Characterization of functional annotation features
 
 1. identify protein domains: we need to install HMMER and download the Pfam domains database. Then we can run hmmur to identify the protein domains::
 
-   cd
-   sudo apt-get install -y hmmer
-   cd /mnt/work
-   wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Pfam-A.hmm.gz
-   gunzip Pfam-A.hmm.gz
-   hmmpress Pfam-A.hmm
-   hmmscan --cpu 4 --domtblout TrinotatePFAM.out Pfam-A.hmm transdecoder.pep > pfam.log
+    cd
+    sudo apt-get install -y hmmer
+    cd /mnt/work
+    wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Pfam-A.hmm.gz
+    gunzip Pfam-A.hmm.gz
+    hmmpress Pfam-A.hmm
+    hmmscan --cpu 4 --domtblout TrinotatePFAM.out Pfam-A.hmm transdecoder.pep > pfam.log
 
 2. We can predict other features include
+
    * signal peptides: using signalP
    * transmembrane regions: using tmHMM
    * rRNA transcripts: using RNAMMER
@@ -134,8 +135,9 @@ Optional: load Uniref90 blast hits::
 Loading functional annotation features::
 
    ~/Trinotate Trinotate.sqlite LOAD_pfam TrinotatePFAM.out
-   #~/Trinotate Trinotate.sqlite LOAD_tmhmm tmhmm.out
-   #~/Trinotate Trinotate.sqlite LOAD_signalp signalp.out
+
+.. ~/Trinotate Trinotate.sqlite LOAD_tmhmm tmhmm.out
+   ~/Trinotate Trinotate.sqlite LOAD_signalp signalp.out
 
 Output an Annotation Report
 ---------------------------
