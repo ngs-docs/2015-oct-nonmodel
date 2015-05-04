@@ -37,36 +37,38 @@ Install BLAST+ (http://www.ncbi.nlm.nih.gov/books/NBK52640/)::
    mv ncbi-blast* blast+
    export PATH=”$PATH:$HOME/blast+/bin”
 
-Get the required sequence databases and prepare local blast databases 
+Get the required sequence databases and prepare local blast databases
+
 a) SwissProt databse: The UniProt Knowledgebase which include the Manually annotated proteins::
 
-     cd /mnt/work
-     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_sprot.trinotate_v2.0.pep.gz
-     mv uniprot_sprot.trinotate_v2.0.pep.gz uniprot_sprot.trinotate.pep.gz
-     gunzip uniprot_sprot.trinotate.pep.gz
-     makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
+   cd /mnt/work
+   wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_sprot.trinotate_v2.0.pep.gz
+   mv uniprot_sprot.trinotate_v2.0.pep.gz uniprot_sprot.trinotate.pep.gz
+   gunzip uniprot_sprot.trinotate.pep.gz
+   makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
 
 b) Optional: Uniref90 which provides clustered sets of protein sequences in a way such that each cluster is composed of sequences that have at least 90% sequence identity to, and 80% overlap with, the longest sequence::
 
-     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
-     mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
-     gunzip uniprot_uniref90.trinotate.pep.gz
-     makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
+   wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
+   mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
+   gunzip uniprot_uniref90.trinotate.pep.g
+   makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
   
-Run blast to find homolies 
+Run blast to find homolies
+
 1. search Trinity transcripts::
    
-   blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
+    blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
 
 2. search Transdecoder-predicted proteins::
 
-   blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
+    blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
 
 
 3. Optional: perform similar searches using uniref90 as the target database, rename output files accordingly::
 
-   blastx -query trinity_out_dir/Trinity.fasta -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastx.outfmt6
-   blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastp.outfmt6
+    blastx -query trinity_out_dir/Trinity.fasta -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastx.outfmt6
+    blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastp.outfmt6
 
 Characterization of functional annotation features
 --------------------------------------------------
