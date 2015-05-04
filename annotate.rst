@@ -106,9 +106,17 @@ install Trinotate::
 
 install `sqlite <http://www.sqlite.org/>`__ ::
 
-   cd
+   sudo apt-get install sqlite3
+  
+.. cd
    wget http://www.sqlite.org/2015/sqlite-shell-linux-x86-3080900.zip
+   sudo apt-get install unzip
    unzip sqlite*.zip
+
+We need also the DBI perl package::
+
+   sudo cpan DBI
+   sudo cpan DBD::SQLite
 
 Retrieve the Trinotate Pre-generated Resource SQLite database
 A pregenerated sqlite database that contains Uniprot(swissprot and uniref90)-related annotation information is available from the Trinity ftp site::
@@ -123,29 +131,29 @@ We have three data types:
 2. Protein sequences (currently as defined by TransDecoder)
 3. Gene/Transcript relationships::
    
-   ~/Trinotate Trinotate.sqlite init --gene_trans_map Trinity.fasta.gene_trans_map --transcript_fasta trinity_out_dir/Trinity.fasta --transdecoder_pep transdecoder.pep
+   ~/Trinotate/Trinotate Trinotate.sqlite init --gene_trans_map Trinity.fasta.gene_trans_map --transcript_fasta trinity_out_dir/Trinity.fasta --transdecoder_pep Trinity.fasta.transdecoder_dir/longest_orfs.pep
 
 
 Loading BLAST homologies::
 
-   ~/Trinotate Trinotate.sqlite LOAD_swissprot_blastp blastp.outfmt6
-   ~/Trinotate Trinotate.sqlite LOAD_swissprot_blastx blastx.outfmt6
+   ~/Trinotate/Trinotate Trinotate.sqlite LOAD_swissprot_blastp blastp.outfmt6
+   ~/Trinotate/Trinotate Trinotate.sqlite LOAD_swissprot_blastx blastx.outfmt6
 
 Optional: load Uniref90 blast hits::
 
-   ~/Trinotate Trinotate.sqlite LOAD_trembl_blastp uniref90.blastp.outfmt6
-   ~/Trinotate Trinotate.sqlite LOAD_trembl_blastx uniref90.blastx.outfmt6
+   ~/Trinotate/Trinotate Trinotate.sqlite LOAD_trembl_blastp uniref90.blastp.outfmt6
+   ~/Trinotate/Trinotate Trinotate.sqlite LOAD_trembl_blastx uniref90.blastx.outfmt6
    
 Loading functional annotation features::
 
-   ~/Trinotate Trinotate.sqlite LOAD_pfam TrinotatePFAM.out
+   ~/Trinotate/Trinotate Trinotate.sqlite LOAD_pfam TrinotatePFAM.out
 
-.. ~/Trinotate Trinotate.sqlite LOAD_tmhmm tmhmm.out
-   ~/Trinotate Trinotate.sqlite LOAD_signalp signalp.out
+.. ~/Trinotate/Trinotate Trinotate.sqlite LOAD_tmhmm tmhmm.out
+   ~/Trinotate/Trinotate Trinotate.sqlite LOAD_signalp signalp.out
 
 Output an Annotation Report
 ---------------------------
 ::
    
-   ~/Trinotate Trinotate.sqlite report -E 0.0001 > trinotate_annotation_report.xls
+   ~/Trinotate/Trinotate Trinotate.sqlite report -E 0.0001 > trinotate_annotation_report.xls
 
