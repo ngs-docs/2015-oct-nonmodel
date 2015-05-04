@@ -85,7 +85,7 @@ Characterization of functional annotation features
     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Pfam-A.hmm.gz
     gunzip Pfam-A.hmm.gz
     hmmpress Pfam-A.hmm
-    hmmscan --cpu 4 --domtblout TrinotatePFAM.out Pfam-A.hmm transdecoder.pep > pfam.log
+    hmmscan --cpu 4 --domtblout TrinotatePFAM.out Pfam-A.hmm Trinity.fasta.transdecoder_dir/longest_orfs.pep > pfam.log
 
 2. We can predict other features like
 
