@@ -83,7 +83,7 @@ Characterization of functional annotation features
     hmmpress Pfam-A.hmm
     hmmscan --cpu 4 --domtblout TrinotatePFAM.out Pfam-A.hmm transdecoder.pep > pfam.log
 
-2. We can predict other features include
+2. We can predict other features like
 
    * signal peptides: using signalP
    * transmembrane regions: using tmHMM
@@ -100,7 +100,7 @@ install Trinotate::
    tar xzf trinotate.tar.gz
    mv Trinotate* Trinotate
 
-install sqlite (required for database integration): http://www.sqlite.org/::
+install `sqlite <http://www.sqlite.org/>`__ ::
 
    cd
    wget http://www.sqlite.org/2015/sqlite-shell-linux-x86-3080900.zip
