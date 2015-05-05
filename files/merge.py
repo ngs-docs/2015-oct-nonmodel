@@ -13,4 +13,4 @@ with open(infile) as fp:
 outfile = infile + '.merged'
 
 for key, val in data.iteritems():
-    print '{k}, {v}'.format(k=key, v=val)
+    print 'bundle_{k}\t{v}'.format(k=key, v=val)

@@ -117,7 +117,7 @@ Links:
 edgeR prefers its counts in a slightly different format than eXpress uses. I've provided a short python script to the conversion for you::
 
     cd /mnt/work
-    curl -o http://2015-may-nonmodel.readthedocs.org/en/latest/_static/merge.py
+    curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/merge.py
     python merge.py 0Hour_repl1_counts.txt > 0Hour_repl1_counts.txt.merged
     python merge.py 0Hour_repl2_counts.txt > 0Hour_repl2_counts.txt.merged
     python merge.py 6Hour_repl1_counts.txt > 6Hour_repl1_counts.txt.merged
