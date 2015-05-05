@@ -82,3 +82,6 @@ which tells you that /mnt has 40 GB of disk space.
 To add disk space to your Amazon instance, see this set of instructions:
 
 http://angus.readthedocs.org/en/2014/amazon/setting-up-an-ebs-volume.html
+
+The simplest advice is to make /mnt a 1 TB disk, which should hold a half
+dozen mRNAseq data sets and all the intermediate data.
