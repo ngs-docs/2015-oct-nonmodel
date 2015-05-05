@@ -73,12 +73,12 @@ a) SwissProt databse: The UniProt Knowledgebase which include the Manually annot
    Run blast to find homolies
 
    1. search Trinity transcripts::
-   
-      blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
+
+	blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
 
    2. search Transdecoder-predicted proteins::
 
-      blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
+	blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
 
     
 b) Optional: Uniref90 which provides clustered sets of protein sequences in a way such that each cluster is composed of sequences that have at least 90% sequence identity to, and 80% overlap with, the longest sequence::
@@ -89,10 +89,10 @@ b) Optional: Uniref90 which provides clustered sets of protein sequences in a wa
     makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
   
 
-perform similar searches using uniref90 as the target database, rename output files accordingly::
+   perform similar searches using uniref90 as the target database, rename output files accordingly::
 
-    blastx -query trinity_out_dir/Trinity.fasta -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastx.outfmt6
-    blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastp.outfmt6
+     blastx -query trinity_out_dir/Trinity.fasta -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastx.outfmt6
+     blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastp.outfmt6
 
 I have ran them overnight already. You can download these files to save time::
 
