@@ -43,7 +43,7 @@ Align Reads with Bowtie
 Next, build an index file for your assembly::
 
     cd /mnt/work
-    gunzip trinity-nematostella-raw.renamed.fasta.gz
+    gunzip -c trinity-nematostella-raw.renamed.fasta.gz > trinity-nematostella-raw.renamed.fasta
     bowtie-build --offrate 1 trinity-nematostella-raw.renamed.fasta trinity-nematostella-raw.renamed
     
 Using the index we built, we'll align the reads from a few of our samples back to our assembly::
