@@ -101,20 +101,23 @@ We'll be using `edgeR
 to do the basic differential expression analysis of our counts.
 
 To run edgeR, you need to write a data loading and manipulation script
-in R.  In this case, I've provided one -- `chick.R
-<https://github.com/ngs-docs/2015-mar-semimodel/blob/master/files/chick.R>`__.
+in R.  In this case, I've provided one -- `diff_exp.R
+<https://github.com/ngs-docs/2015-may-nonmodel/blob/master/files/diff_exp.R>`__.
 This script will load in two samples with two replicates, execute an
 MA plot, do an MDS analysis/plot, and provide a spreadsheet with
-differential expression information in it.  To download it, `click
-here
-<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/chick.R>`__.
+differential expression information in it. 
 
 Links:
 
 * `False Discovery Rate <http://en.wikipedia.org/wiki/False_discovery_rate>`__
 * `Learn R with Swirl <http://swirlstats.com/>`__
 
-edgeR prefers its counts in a slightly different format than eXpress uses. I've provided a short python script to the conversion for you::
+So, download the script::
+
+    cd /mnt/work
+    curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/diff_exp.R
+
+edgeR prefers its counts in a slightly different format than eXpress uses. I've provided a short python script to the conversion for you, which we'll run before we run the script we just downloaded::
 
     cd /mnt/work
     curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/merge.py
@@ -123,9 +126,17 @@ edgeR prefers its counts in a slightly different format than eXpress uses. I've 
     python merge.py 6Hour_repl1_counts.txt > 6Hour_repl1_counts.txt.merged
     python merge.py 6Hour_repl2_counts.txt > 6Hour_repl2_counts.txt.merged
 
-So, download the script::
+Now we run the differential expression script with::
 
-    cd /mnt/work
-    curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/diff_exp.R
+    Rscript diff_exp.R
 
-
+This will produce three files, `nema-edgeR-MA-plot.pdf
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/nema-edgeR-MA-plot.pdf>`__,
+`chick-edgeR-MDS.pdf
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/nema-edgeR-MDS.pdf>`__,
+and `chick-edgeR.csv
+<http://2015-may-nonmodel.readthedocs.org/en/latest/_static/nema-edgeR.csv>`__. The CSV file can be opened directly in Excel; you can
+also look at it `here
+<https://raw.githubusercontent.com/ngs-docs/2015-may-nonmodel/master/files/chick-subset/chick-edgeR.csv>`__.
+It consists of five columns: gene name, log fold change, P-value, and
+FDR-adjusted P-value.
