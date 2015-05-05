@@ -33,28 +33,39 @@ Download Express
 
 Now, get express::
 
+    cd
     curl -L http://bio.math.berkeley.edu/eXpress/downloads/express-1.5.1/express-1.5.1-linux_x86_64.tgz > express.tar.gz
+    tar xzf express.tar.gz
 
 Align Reads with Bowtie
 -----------------------
    
 Next, build an index file for your assembly::
 
+    cd /mnt/work
     gunzip trinity-nematostella-raw.renamed.fasta.gz
     bowtie-build --offrate 1 trinity-nematostella-raw.renamed.fasta trinity-nematostella-raw.renamed
     
-Using the index we built, we'll align the reads from our first sample back to our assembly::
+Using the index we built, we'll align the reads from a few of our samples back to our assembly::
 
     bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 0Hour_ATCACG_L002_R1_001.extract.fastq.gz) -2 <(zcat 0Hour_ATCACG_L002_R2_001.extract.fastq.gz) > 0Hour_ATCACG_L002_001.extract.sam
+    bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 0Hour_ATCACG_L002_R1_002.extract.fastq.gz) -2 <(zcat 0Hour_ATCACG_L002_R2_002.extract.fastq.gz) > 0Hour_ATCACG_L002_002.extract.sam
+
+    bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 6Hour_CGATGT_L002_R1_001.extract.fastq.gz) -2 <(zcat 6Hour_CGATGT_L002_R2_001.extract.fastq.gz) > 6Hour_CGATGT_L002_001.extract.sam
+    bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 6Hour_CGATGT_L002_R1_002.extract.fastq.gz) -2 <(zcat 6Hour_CGATGT_L002_R2_002.extract.fastq.gz) > 6Hour_CGATGT_L002_002.extract.sam
 
 Quantify Expression using eXpress
 ---------------------------------
 
-Finally, using eXpress, we'll get abundance estimates for our transcripts. eXpress uses a probabilistic model to efficiently assign mapped reads to isoforms and estimate expression level (see `the website for additional details and relevant publications <http://bio.math.berkeley.edu/eXpress/overview.html>`__::
+Finally, using eXpress, we'll get abundance estimates for our transcripts. eXpress uses a probabilistic model to efficiently assign mapped reads to isoforms and estimate expression level (see `the website for additional details and relevant publications <http://bio.math.berkeley.edu/eXpress/overview.html>`__)::
 
     ~/express-1.5.1-linux_x86_64/express --no-bias-correct -o 0Hour_ATCACG_L002_001.extract.sam-express trinity-nematostella-raw.renamed.fasta 0Hour_ATCACG_L002_001.extract.sam
+    ~/express-1.5.1-linux_x86_64/express --no-bias-correct -o 0Hour_ATCACG_L002_002.extract.sam-express trinity-nematostella-raw.renamed.fasta 0Hour_ATCACG_L002_002.extract.sam
 
-This will put the results in a new folder called `0Hour_ATCACG_L002_001.extract.sam-express`. It contains a file called `results.xprs`, which we'll look at the first ten lines of using the `head` command::
+    ~/express-1.5.1-linux_x86_64/express --no-bias-correct -o 6Hour_CGATGT_L002_001.extract.sam-express trinity-nematostella-raw.renamed.fasta 6Hour_CGATGT_L002_001.extract.sam
+    ~/express-1.5.1-linux_x86_64/express --no-bias-correct -o 6Hour_CGATGT_L002_002.extract.sam-express trinity-nematostella-raw.renamed.fasta 6Hour_CGATGT_L002_002.extract.sam
+
+This will put the results in a new set of folders named like `<condition>_<barcode>_L002_<replicate>.extract.sam-express`. Each contains a file called `results.xprs` with the results. We'll look at the first ten lines of one of the files using the `head` command::
 
     head 0Hour_ATCACG_L002_001.extract.sam-express/results.xprs
 
@@ -70,3 +81,42 @@ You should see something like this::
     3   nema.id63.tr13  406 103.720396  360 270 271.097003  1061.173959 1.934732e+02    1.567940e+04    2.578456e+04    2.417706e+04    2.739205e+04    T   3.938541e+04
     3   nema.id61.tr13  447 144.526787  6   0   0.000000    0.000000    2.246567e+04    2.246565e+10    3.518941e-08    0.000000e+00    1.296989e-03    T   5.375114e-08
     4   nema.id21.tr8   2075    1771.684102 2782    58  958.636395  1122.756883 1.223148e+02    2.476298e+02    5.337855e+03    4.749180e+03    5.926529e+03    T   8.153470e+03
+
+Differential Expression
+-----------------------
+
+First, install R and edgeR::
+
+    sudo apt-get install -y r-base-core r-bioc-edger csvtool
+
+Now, we extract the columns we need from the eXpress outputs::
+
+    csvtool namedcol -t TAB bundle_id,est_counts 0Hour_ATCACG_L002_001.extract.sam-express/results.xprs > 0Hour_repl1_counts.txt
+    csvtool namedcol -t TAB bundle_id,est_counts 0Hour_ATCACG_L002_002.extract.sam-express/results.xprs > 0Hour_repl2_counts.txt    
+    csvtool namedcol -t TAB bundle_id,est_counts 6Hour_CGATGT_L002_001.extract.sam-express/results.xprs > 6Hour_repl1_counts.txt
+    csvtool namedcol -t TAB bundle_id,est_counts 6Hour_CGATGT_L002_002.extract.sam-express/results.xprs > 6Hour_repl2_counts.txt
+
+We'll be using `edgeR
+<http://www.bioconductor.org/packages/release/bioc/html/edgeR.html>`__
+to do the basic differential expression analysis of our counts.
+
+To run edgeR, you need to write a data loading and manipulation script
+in R.  In this case, I've provided one -- `chick.R
+<https://github.com/ngs-docs/2015-mar-semimodel/blob/master/files/chick.R>`__.
+This script will load in two samples with two replicates, execute an
+MA plot, do an MDS analysis/plot, and provide a spreadsheet with
+differential expression information in it.  To download it, `click
+here
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/chick.R>`__.
+
+Links:
+
+* `False Discovery Rate <http://en.wikipedia.org/wiki/False_discovery_rate>`__
+* `Learn R with Swirl <http://swirlstats.com/>`__
+
+So, download the script::
+
+    cd /mnt/work
+    curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/diff_exp.R
+
+
