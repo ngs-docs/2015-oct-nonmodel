@@ -12,11 +12,12 @@ Let's have a look on the map::
 
   less Trinity.fasta.gene_trans_map
 
-components, genes and isoforms:
+Components, genes and isoforms:
 
 * The different (i's) that correspond to the same (g) represent isoforms
 * The different (g's) could represent different genes (or parts of genes)
-* The component (TR|c) often contain related genes (paralogs or gene fragments) Check the `Trinityseq forum <https://groups.google.com/forum/#!topic/trinityrnaseq-users/1XTZ5S0I8J0>`__ for more details   
+* The component (TR|c) often contain related genes (paralogs or gene fragments)
+  Check the `Trinityseq forum <https://groups.google.com/forum/#!topic/trinityrnaseq-users/1XTZ5S0I8J0>`__ for more details   
 
 Generate the longest-ORF peptide candidates from the Trinity Assembly:
 ----------------------------------------------------------------------
@@ -72,11 +73,11 @@ a) SwissProt databse: The UniProt Knowledgebase which include the Manually annot
 
    1. search Trinity transcripts::
    
-    blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
+     blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
 
    2. search Transdecoder-predicted proteins::
 
-    blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
+     blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
 
     
 b) Optional: Uniref90 which provides clustered sets of protein sequences in a way such that each cluster is composed of sequences that have at least 90% sequence identity to, and 80% overlap with, the longest sequence::
