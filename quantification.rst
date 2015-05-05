@@ -48,7 +48,11 @@ Next, build an index file for your assembly::
     
 Using the index we built, we'll align the reads from a few of our samples back to our assembly::
 
-    bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 0Hour_ATCACG_L002_R1_001.extract.fastq.gz) -2 <(zcat 0Hour_ATCACG_L002_R2_001.extract.fastq.gz) > 0Hour_ATCACG_L002_001.extract.sam
+    bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed \
+        -1 <(zcat 0Hour_ATCACG_L002_R1_001.extract.fastq.gz) \
+        -2 <(zcat 0Hour_ATCACG_L002_R2_001.extract.fastq.gz) \
+        > 0Hour_ATCACG_L002_001.extract.sam
+
     bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 0Hour_ATCACG_L002_R1_002.extract.fastq.gz) -2 <(zcat 0Hour_ATCACG_L002_R2_002.extract.fastq.gz) > 0Hour_ATCACG_L002_002.extract.sam
 
     bowtie -aS -X 800 --offrate 1 trinity-nematostella-raw.renamed -1 <(zcat 6Hour_CGATGT_L002_R1_001.extract.fastq.gz) -2 <(zcat 6Hour_CGATGT_L002_R2_001.extract.fastq.gz) > 6Hour_CGATGT_L002_001.extract.sam
