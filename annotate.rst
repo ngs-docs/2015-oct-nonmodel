@@ -1,7 +1,7 @@
 Annotation of denovo transcriptome
 ==================================
 
-Indentify the Gene/Transcript relationships:
+Identify the Gene/Transcript relationships:
 --------------------------------------------
 we can generate this file like so::
 
@@ -61,7 +61,7 @@ Install BLAST+ (http://www.ncbi.nlm.nih.gov/books/NBK52640/)::
 
 Get the required sequence databases and prepare local blast databases
 
-a) SwissProt databse: The UniProt Knowledgebase which include the Manually annotated proteins::
+a) SwissProt database: The UniProt Knowledgebase which include the Manually annotated proteins::
 
     cd /mnt/work
     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_sprot.trinotate_v2.0.pep.gz
@@ -70,7 +70,7 @@ a) SwissProt databse: The UniProt Knowledgebase which include the Manually annot
     makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
 
 
-   Run blast to find homolies
+   Run blast to find homologies.
 
    1. search Trinity transcripts::
 
@@ -106,7 +106,7 @@ Characterization of functional annotation features
 
     sudo apt-get install -y hmmer
 
-   Then we can run hmmur to identify the protein domains::
+Then we can run hmmer to identify the protein domains::
      
     cd /mnt/work
     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Pfam-A.hmm.gz
@@ -146,7 +146,7 @@ We need also the DBI perl package::
    sudo cpan DBD::SQLite
 
 Retrieve the Trinotate Pre-generated Resource SQLite database
-A pregenerated sqlite database that contains Uniprot(swissprot and uniref90)-related annotation information is available from the Trinity ftp site::
+A pregenerated sqlite database that contains Uniprot (swissprot and uniref90)-related annotation information is available from the Trinity ftp site::
 
    cd /mnt/work
    wget "ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Trinotate.sprot_uniref90.20150131.boilerplate.sqlite.gz" -O Trinotate.sqlite.gz
