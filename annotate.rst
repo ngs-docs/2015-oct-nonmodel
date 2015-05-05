@@ -66,6 +66,7 @@ a) SwissProt databse: The UniProt Knowledgebase which include the Manually annot
     gunzip uniprot_sprot.trinotate.pep.gz
     makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
 
+
 Run blast to find homolies
 
 1. search Trinity transcripts::
@@ -92,7 +93,7 @@ perform similar searches using uniref90 as the target database, rename output fi
 
 I have ran them overnight already. You can download these files to save time::
 
-  
+  wget xxx
 
 Characterization of functional annotation features
 --------------------------------------------------

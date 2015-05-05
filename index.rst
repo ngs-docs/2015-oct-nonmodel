@@ -19,6 +19,7 @@ Tutorials:
    n-assemble
    n-blast
    annotate
+   quantification
 
 ..   s-data-analysis
 ..   s-interacting-with-amazon
