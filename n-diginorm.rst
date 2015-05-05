@@ -15,6 +15,7 @@ unnecessary for assembly.
 First, we'll run it on the interleaved files we generated in the previous
 section::
 
+   cd /mnt/work
    normalize-by-median.py -k 20 -p -C 20 -N 4 -x 2e9 -s normC20k20.ct *.pe.qc.fq.gz
 
 (These parameters should work for essentially all mRNAseq data sets; see

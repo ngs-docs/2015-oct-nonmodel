@@ -21,10 +21,12 @@ Tutorials:
    annotate
    quantification
 
+   n-interacting-with-amazon
+   more-resources
+   qa
+
 ..   s-data-analysis
-..   s-interacting-with-amazon
 ..   m-advice
-..   more-resources
 
 Technical information
 ~~~~~~~~~~~~~~~~~~~~~
