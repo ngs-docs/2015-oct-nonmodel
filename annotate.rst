@@ -5,7 +5,17 @@ Indentify the Gene/Transcript relationships:
 --------------------------------------------
 we can generate this file like so::
 
-   ~/trinity/util/support_scripts/get_Trinity_gene_to_trans_map.pl trinity_out_dir/Trinity.fasta >  Trinity.fasta.gene_trans_map
+  cd /mnt/work
+  ~/trinity/util/support_scripts/get_Trinity_gene_to_trans_map.pl trinity_out_dir/Trinity.fasta >  Trinity.fasta.gene_trans_map
+
+Let's have a look on the map::
+
+  less Trinity.fasta.gene_trans_map
+
+components, genes and isoforms:
+* The different (i's) that correspond to the same (g) represent isoforms
+* The different (g's) could represent different genes (or parts of genes)
+* The component (TR|c) often contain related genes (paralogs or gene fragments) Check the `Trinityseq forum <https://groups.google.com/forum/#!topic/trinityrnaseq-users/1XTZ5S0I8J0>`__ for more details   
 
 Generate the longest-ORF peptide candidates from the Trinity Assembly:
 ----------------------------------------------------------------------
@@ -29,6 +39,11 @@ Now we can run the Transdecoder software to identify the longest-ORF peptide::
    cd /mnt/work
    ~/TransDecoder/TransDecoder.LongOrfs -t trinity_out_dir/Trinity.fasta
 
+Check the Transdecoder output::
+
+  less Trinity.fasta.transdecoder_dir/longest_orfs.pep
+  
+   
 Capturing BLAST Homologies
 --------------------------
 Install BLAST+ (http://www.ncbi.nlm.nih.gov/books/NBK52640/)::
@@ -51,13 +66,6 @@ a) SwissProt databse: The UniProt Knowledgebase which include the Manually annot
     gunzip uniprot_sprot.trinotate.pep.gz
     makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
 
-b) Optional: Uniref90 which provides clustered sets of protein sequences in a way such that each cluster is composed of sequences that have at least 90% sequence identity to, and 80% overlap with, the longest sequence::
-
-    wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
-    mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
-    gunzip uniprot_uniref90.trinotate.pep.g
-    makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
-  
 Run blast to find homolies
 
 1. search Trinity transcripts::
@@ -68,19 +76,33 @@ Run blast to find homolies
 
     blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
 
+    
+b) Optional: Uniref90 which provides clustered sets of protein sequences in a way such that each cluster is composed of sequences that have at least 90% sequence identity to, and 80% overlap with, the longest sequence::
 
-3. Optional: perform similar searches using uniref90 as the target database, rename output files accordingly::
+    wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/uniprot_uniref90.trinotate_v2.0.pep.gz
+    mv uniprot_uniref90.trinotate_v2.0.pep.gz uniprot_uniref90.trinotate.pep.gz
+    gunzip uniprot_uniref90.trinotate.pep.gz
+    makeblastdb -in uniprot_uniref90.trinotate.pep -dbtype prot
+  
+
+perform similar searches using uniref90 as the target database, rename output files accordingly::
 
     blastx -query trinity_out_dir/Trinity.fasta -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastx.outfmt6
     blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_uniref90.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > uniref90.blastp.outfmt6
 
+I have ran them overnight already. You can download these files to save time::
+
+  
+
 Characterization of functional annotation features
 --------------------------------------------------
 
-1. identify protein domains: we need to install HMMER and download the Pfam domains database. Then we can run hmmur to identify the protein domains::
+1. identify protein domains: we need to install HMMER and download the Pfam domains database::
 
-    cd
     sudo apt-get install -y hmmer
+
+   Then we can run hmmur to identify the protein domains::
+     
     cd /mnt/work
     wget ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Pfam-A.hmm.gz
     gunzip Pfam-A.hmm.gz
@@ -125,8 +147,8 @@ A pregenerated sqlite database that contains Uniprot(swissprot and uniref90)-rel
    wget "ftp://ftp.broadinstitute.org/pub/Trinity/Trinotate_v2.0_RESOURCES/Trinotate.sprot_uniref90.20150131.boilerplate.sqlite.gz" -O Trinotate.sqlite.gz
    gunzip Trinotate.sqlite.gz
 
-Load transcripts and coding regions
-We have three data types:
+Load transcripts and coding regions. We have three data types:
+
 1. Transcript sequences (de novo assembled transcripts or reference transcripts)
 2. Protein sequences (currently as defined by TransDecoder)
 3. Gene/Transcript relationships::
@@ -144,7 +166,7 @@ Optional: load Uniref90 blast hits::
    ~/Trinotate/Trinotate Trinotate.sqlite LOAD_trembl_blastp uniref90.blastp.outfmt6
    ~/Trinotate/Trinotate Trinotate.sqlite LOAD_trembl_blastx uniref90.blastx.outfmt6
    
-Loading functional annotation features::
+Optional: Loading functional annotation features::
 
    ~/Trinotate/Trinotate Trinotate.sqlite LOAD_pfam TrinotatePFAM.out
 
@@ -156,4 +178,18 @@ Output an Annotation Report
 ::
    
    ~/Trinotate/Trinotate Trinotate.sqlite report -E 0.0001 > trinotate_annotation_report.xls
+
+There are 2 arguments that we can use to control the accuracy of annotation
+-E <float> : maximum E-value for reporting best blast hit and associated annotations.
+--pfam_cutoff <string>     'DNC' : domain noise cutoff (default)
+                           'DGC' : domain gathering cutoff
+                           'DTC' : domain trusted cutoff
+                           'SNC' : sequence noise cutoff
+                           'SGC' : sequence gathering cutoff
+                           'STC' : sequence trusted cutoff
+
+
+let us see the output. Open a new shell::
+
+  scp -i YOUR_SECURITY_KEY.pem ubuntu@YOUR_AMAZONE_INSTANCE_ADDRESS:/mnt/work/trinotate_annotation_report.xls .
 
