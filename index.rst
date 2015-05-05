@@ -22,12 +22,10 @@ Tutorials:
    quantification
    remapping
 
-   n-interacting-with-amazon
+   m-advice
    more-resources
    qa
-
-..   s-data-analysis
-..   m-advice
+   n-interacting-with-amazon
 
 Technical information
 ~~~~~~~~~~~~~~~~~~~~~

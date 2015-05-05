@@ -36,3 +36,16 @@ Miscellaneous questions
    analyses?
 
 7. How do we know if our reference transcriptome is "good enough"?
+
+   See :doc:`remapping`.
+
+8. How do I choose the set of tools to use?
+
+   Our recommendations, in order:
+
+   1. Find a tool that a nearby lab is using, and start there.
+
+   2. Look at tools and workflows that are used in published papers by
+      groups working in your area.
+
+   3. Look for good tutorials online.
