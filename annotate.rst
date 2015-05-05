@@ -13,6 +13,7 @@ Let's have a look on the map::
   less Trinity.fasta.gene_trans_map
 
 components, genes and isoforms:
+
 * The different (i's) that correspond to the same (g) represent isoforms
 * The different (g's) could represent different genes (or parts of genes)
 * The component (TR|c) often contain related genes (paralogs or gene fragments) Check the `Trinityseq forum <https://groups.google.com/forum/#!topic/trinityrnaseq-users/1XTZ5S0I8J0>`__ for more details   
@@ -67,13 +68,13 @@ a) SwissProt databse: The UniProt Knowledgebase which include the Manually annot
     makeblastdb -in uniprot_sprot.trinotate.pep -dbtype prot
 
 
-Run blast to find homolies
+   Run blast to find homolies
 
-1. search Trinity transcripts::
+   1. search Trinity transcripts::
    
     blastx -query trinity_out_dir/Trinity.fasta -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastx.outfmt6
 
-2. search Transdecoder-predicted proteins::
+   2. search Transdecoder-predicted proteins::
 
     blastp -query Trinity.fasta.transdecoder_dir/longest_orfs.pep -db uniprot_sprot.trinotate.pep -num_threads 4 -max_target_seqs 1 -outfmt 6 > blastp.outfmt6
 
