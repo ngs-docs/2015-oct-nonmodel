@@ -155,7 +155,9 @@ Load transcripts and coding regions. We have three data types:
 
 1. Transcript sequences (de novo assembled transcripts or reference transcripts)
 2. Protein sequences (currently as defined by TransDecoder)
-3. Gene/Transcript relationships::
+3. Gene/Transcript relationships
+
+::
    
    ~/Trinotate/Trinotate Trinotate.sqlite init --gene_trans_map Trinity.fasta.gene_trans_map --transcript_fasta trinity_out_dir/Trinity.fasta --transdecoder_pep Trinity.fasta.transdecoder_dir/longest_orfs.pep
 
@@ -184,13 +186,17 @@ Output an Annotation Report
    ~/Trinotate/Trinotate Trinotate.sqlite report -E 0.0001 > trinotate_annotation_report.xls
 
 There are 2 arguments that we can use to control the accuracy of annotation
+
 -E <float> : maximum E-value for reporting best blast hit and associated annotations.
---pfam_cutoff <string>     'DNC' : domain noise cutoff (default)
-                           'DGC' : domain gathering cutoff
-                           'DTC' : domain trusted cutoff
-                           'SNC' : sequence noise cutoff
-                           'SGC' : sequence gathering cutoff
-                           'STC' : sequence trusted cutoff
+
+--pfam_cutoff <string>
+
+1. 'DNC' : domain noise cutoff (default)
+2. 'DGC' : domain gathering cutoff
+3. 'DTC' : domain trusted cutoff
+4. 'SNC' : sequence noise cutoff
+5. 'SGC' : sequence gathering cutoff
+6. 'STC' : sequence trusted cutoff
 
 
 let us see the output. Open a new shell::
