@@ -132,9 +132,9 @@ Now we run the differential expression script with::
 
 This will produce three files, `nema-edgeR-MA-plot.pdf
 <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/nema-edgeR-MA-plot.pdf>`__,
-`chick-edgeR-MDS.pdf
+`nema-edgeR-MDS.pdf
 <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/nema-edgeR-MDS.pdf>`__,
-and `chick-edgeR.csv
+and `nema-edgeR.csv
 <http://2015-may-nonmodel.readthedocs.org/en/latest/_static/nema-edgeR.csv>`__. The CSV file can be opened directly in Excel; you can
 also look at it `here
 <https://raw.githubusercontent.com/ngs-docs/2015-may-nonmodel/master/files/chick-subset/chick-edgeR.csv>`__.
