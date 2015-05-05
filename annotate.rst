@@ -96,7 +96,8 @@ b) Optional: Uniref90 which provides clustered sets of protein sequences in a wa
 
 I have ran them overnight already. You can download these files to save time::
 
-  wget xxx
+  wget https://github.com/ngs-docs/2015-may-nonmodel/blob/master/_static/uniref90.blastp.outfmt6
+  wget https://github.com/ngs-docs/2015-may-nonmodel/blob/master/_static/uniref90.blastx.outfmt6
 
 Characterization of functional annotation features
 --------------------------------------------------
