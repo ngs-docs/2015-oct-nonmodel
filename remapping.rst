@@ -9,6 +9,7 @@ installed::
 
 Now, create a bowtie2 index out of your transcriptome::
 
+   cd /mnt/work
    gunzip -c trinity-nematostella-raw.renamed.fasta.gz > trinity-nematostella-raw.renamed.fasta
    bowtie2-build  trinity-nematostella-raw.renamed.fasta transcriptome
 
