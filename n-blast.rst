@@ -4,7 +4,7 @@ BLASTing your assembled data
 First, install a few prerequisites::
 
    
-   sudo apt-get -y install lighttpd blast2 git-core
+   sudo apt-get -y install lighttpd blast2 git-core zlib1g-dev
 
 Next, grab things needed for the BLAST server::
 
