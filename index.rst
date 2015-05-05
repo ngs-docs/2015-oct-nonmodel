@@ -20,6 +20,7 @@ Tutorials:
    n-blast
    annotate
    quantification
+   remapping
 
    n-interacting-with-amazon
    more-resources
