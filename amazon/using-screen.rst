@@ -4,7 +4,7 @@ Using 'screen'
 
 :Author: Rosangela Canino-Koning
 :Date: June 9, 2011
-:Last Updated: July 24, 2013
+:Last Updated: May 5, 2015
 
 Persistent Sessions
 -------------------
@@ -13,9 +13,9 @@ Screen is a window manager for terminal sessions. Screen allows you to
 run a terminal session, and then disconnect from the computer, and be
 able to return to the session at a later date.
 
-To start screen, you run the screen command with a few options::
+To start screen, you run the screen command::
 
-  screen -S <sessionname>
+  screen
  
 Where *sessionname* is any meaningful or descriptive title for your screen 
 session. This creates an independent terminal session, and connects you to it. 
@@ -43,7 +43,7 @@ To illustrate managing multiple screen session, disconnect from the current
 session, and create a new session with a second name.::
 
   C-a d
-  screen -S <secondsessionname>
+  screen
  
 Disconnect from the second session, and then list the available sessions::
 
@@ -53,6 +53,6 @@ Disconnect from the second session, and then list the available sessions::
 Note, typing *screen -r* with multiple active screen sessions will display
 the same information.
 
-To reconnect to the first session, include its name after the -r.::
+To reconnect to the first session, include its number after the -r.::
 
-  screen -r <sessionname>
+  screen -r <number>
