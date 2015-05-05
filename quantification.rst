@@ -50,11 +50,11 @@ Using the index we built, we'll align the reads from our first sample back to ou
 Quantify Expression using eXpress
 ---------------------------------
 
-Finally, using eXpress, we'll get abundance estimates for our transcripts. eXpress uses a probabilistic model to efficiently assign mapped reads to isoforms and estimate expression level (see `the website for additional details and relevant publications<http://bio.math.berkeley.edu/eXpress/overview.html>`__::
+Finally, using eXpress, we'll get abundance estimates for our transcripts. eXpress uses a probabilistic model to efficiently assign mapped reads to isoforms and estimate expression level (see `the website for additional details and relevant publications <http://bio.math.berkeley.edu/eXpress/overview.html>`__::
 
     ~/express-1.5.1-linux_x86_64/express --no-bias-correct -o 0Hour_ATCACG_L002_001.extract.sam-express trinity-nematostella-raw.renamed.fasta 0Hour_ATCACG_L002_001.extract.sam
 
-This will put the results in a new folder called <>. It contains a file called `results.xprs`, which we'll look at the first ten lines of using the `head` command::
+This will put the results in a new folder called `0Hour_ATCACG_L002_001.extract.sam-express`. It contains a file called `results.xprs`, which we'll look at the first ten lines of using the `head` command::
 
     head 0Hour_ATCACG_L002_001.extract.sam-express/results.xprs
 
