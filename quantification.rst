@@ -131,3 +131,8 @@ also look at it `here
 <https://raw.githubusercontent.com/ngs-docs/2015-may-nonmodel/master/files/chick-subset/chick-edgeR.csv>`__.
 It consists of five columns: gene name, log fold change, P-value, and
 FDR-adjusted P-value.
+
+You can also view more informative versions of these files generated from a different dataset: `chick-edgeR-MA-plot.pdf
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MA-plot.pdf>`__, and
+`chick-edgeR-MDS.pdf
+<http://2015-mar-semimodel.readthedocs.org/en/latest/_static/chick-subset/chick-edgeR-MDS.pdf>`__.
