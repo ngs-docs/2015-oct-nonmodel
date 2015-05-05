@@ -1,7 +1,7 @@
 library("edgeR")
 
-files <- c("0Hour_repl1_counts.txt.merged", "0Hour_repl2_counts.txt.merged",
-      "6Hour_repl1_counts.txt.merged", "6Hour_repl2_counts.txt.merged")
+files <- c("0Hour_repl1_counts.txt", "0Hour_repl2_counts.txt",
+      "6Hour_repl1_counts.txt", "6Hour_repl2_counts.txt")
 
 data <- readDGE(files, header=FALSE)
 

@@ -89,12 +89,12 @@ First, install R and edgeR::
 
     sudo apt-get install -y r-base-core r-bioc-edger csvtool
 
-Now, we extract the columns we need from the eXpress outputs::
+Now, we extract the columns we need from the eXpress outputs and convert it to the appropriate format::
 
-    csvtool namedcol -t TAB bundle_id,est_counts 0Hour_ATCACG_L002_001.extract.sam-express/results.xprs > 0Hour_repl1_counts.txt
-    csvtool namedcol -t TAB bundle_id,est_counts 0Hour_ATCACG_L002_002.extract.sam-express/results.xprs > 0Hour_repl2_counts.txt    
-    csvtool namedcol -t TAB bundle_id,est_counts 6Hour_CGATGT_L002_001.extract.sam-express/results.xprs > 6Hour_repl1_counts.txt
-    csvtool namedcol -t TAB bundle_id,est_counts 6Hour_CGATGT_L002_002.extract.sam-express/results.xprs > 6Hour_repl2_counts.txt
+    csvtool namedcol -t TAB target_id,est_counts 0Hour_ATCACG_L002_001.extract.sam-express/results.xprs | csvtool drop 1 -u TAB - > 0Hour_repl1_counts.txt
+    csvtool namedcol -t TAB target_id,est_counts 0Hour_ATCACG_L002_002.extract.sam-express/results.xprs | csvtool drop 1 -u TAB - > 0Hour_repl2_counts.txt
+    csvtool namedcol -t TAB target_id,est_counts 6Hour_CGATGT_L002_001.extract.sam-express/results.xprs | csvtool drop 1 -u TAB - > 6Hour_repl1_counts.txt
+    csvtool namedcol -t TAB target_id,est_counts 6Hour_CGATGT_L002_002.extract.sam-express/results.xprs | csvtool drop 1 -u TAB - > 6Hour_repl2_counts.txt
 
 We'll be using `edgeR
 <http://www.bioconductor.org/packages/release/bioc/html/edgeR.html>`__
@@ -116,15 +116,6 @@ So, download the script::
 
     cd /mnt/work
     curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/diff_exp.R
-
-edgeR prefers its counts in a slightly different format than eXpress uses. I've provided a short python script to the conversion for you, which we'll run before we run the script we just downloaded::
-
-    cd /mnt/work
-    curl -O http://2015-may-nonmodel.readthedocs.org/en/latest/_static/merge.py
-    python merge.py 0Hour_repl1_counts.txt > 0Hour_repl1_counts.txt.merged
-    python merge.py 0Hour_repl2_counts.txt > 0Hour_repl2_counts.txt.merged
-    python merge.py 6Hour_repl1_counts.txt > 6Hour_repl1_counts.txt.merged
-    python merge.py 6Hour_repl2_counts.txt > 6Hour_repl2_counts.txt.merged
 
 Now we run the differential expression script with::
 
