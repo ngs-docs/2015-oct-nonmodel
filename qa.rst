@@ -26,14 +26,47 @@ Miscellaneous questions
 
 2. What are "transcript families"?
 
+   Transcript families and components are computational terms for
+   "transcripts that may share exons".  The biological analogy to use
+   is splice isoforms - but keep in mind that the computer can't
+   necessarily tell the difference between transcripts that are "real"
+   splice variants, noisy splicing, different allelic variants of
+   transcripts, recent paralogs, etc. etc. - all the computer knows
+   is that the transcripts share some amount of sequence.
+
+   So, transcript families are Trinity's best guess at transcripts
+   that come from the same locus.
+
 3. What should we look at in FastQC results for RNAseq data?
+
+   The main thing to pay attention to is the first graph, of quality
+   scores vs position.  If your average quality takes a big dip at a
+   particular position, you might consider trimming at that position.
 
 4. How do we transfer our data to Amazon (or any remote computer)?
 
+   There are two options --
+
+   If your data is on your local computer, you can use Cyberduck to
+   transfer the data to Amazon.  (see
+   :doc:`n-interacting-with-amazon`).
+
+   If the data is on a remote computer (like your sequencing center)
+   you can probably use 'curl' or 'wget' to copy the data directly
+   from the sequencing center to your Amazon computer.  You should ask
+   them what the full URL (with username and password) is to each
+   of your data sets, or find your local computer expert to help out.
+
 5. How do we use Amazon to run full analyses?
+
+   See :doc:`n-interacting-with-amazon`, "Running full analyses".
 
 6. Can we use XSEDE or iPlant or <insert other platform here> to run these
    analyses?
+
+   Yes, but you should omit all of the 'apt-get' and 'pip install'
+   instructions - the sysadmins on those computers will need to install
+   these programs for you.
 
 7. How do we know if our reference transcriptome is "good enough"?
 
