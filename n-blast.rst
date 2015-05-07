@@ -2,7 +2,6 @@ BLASTing your assembled data
 ============================
 
 First, install a few prerequisites::
-
    
    sudo apt-get -y install lighttpd blast2 git-core zlib1g-dev
 
@@ -38,8 +37,10 @@ Now, copy in your newly created transcriptome::
    python index-db.py db/db.fa
 
 You can now access your BLAST server at http://<amazon machine
-name>/blastkit/.  Note that you will need to enable HTTP access on
-your Amazon firewall settings.
+name>/blastkit/.
+
+Note that you will need to enable HTTP access on
+your Amazon firewall settings; see :doc:`../amazon/enable-http`.
 
 If you want to use something that will get you results with the test
 data set, try BLASTing `zebrafish lethal giant larvae homolog
