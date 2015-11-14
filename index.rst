@@ -1,10 +1,7 @@
-2015 / May / mRNAseq on non-model organisms
+2015 / Oct / mRNAseq on non-model organisms
 ===========================================
 
-This workshop was given on May 4th and 5th, 2015, by C. Titus Brown,
-Camile Scott, and Tamer Mansour.  See `the workshop organization page
-<http://dib-training.readthedocs.org/en/pub/2015-05-04-mRNAseq-nonmodel.html>`__
-for more information, or `contact Titus directly <mailto:ctbrown@ucdavis.edu>`__.
+This workshop was actually cancelled :). Now I'm using it as a demo.
 
 Tutorials:
 
@@ -30,4 +27,4 @@ Tutorials:
 Technical information
 ~~~~~~~~~~~~~~~~~~~~~
 
-The github repository for this workshop is publicly available at https://github.com/ngs-docs/2015-may-nonmodel.
+The github repository for this workshop is publicly available at https://github.com/ngs-docs/2015-oct-nonmodel.
